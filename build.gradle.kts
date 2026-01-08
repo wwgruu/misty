@@ -7,7 +7,7 @@ plugins {
     id("java-library")
 
     //Fairy framework plugin
-    id("io.fairyproject") version "0.8.3b1-SNAPSHOT" apply false
+    id("io.fairyproject") version "0.8.4b1-SNAPSHOT" apply false
 
     // Dependency management plugin
     id("io.spring.dependency-management") version "1.1.0"
@@ -16,7 +16,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
 
     // Lombok
-    id("io.freefair.lombok") version "8.14" apply false
+    id("io.freefair.lombok") version "9.1.0" apply false
 }
 
 allprojects {

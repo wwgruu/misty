@@ -49,8 +49,8 @@ dependencies {
     // Mojang Auth
     compileOnly("com.mojang:authlib:6.0.54")
     // Anvil GUI
-    implementation("net.wesjd:anvilgui:1.10.10-SNAPSHOT")
+    implementation("net.wesjd:anvilgui:1.10.11-SNAPSHOT")
     // ConfigLib
-    implementation("de.exlll:configlib-yaml:4.6.4")
-    implementation("de.exlll:configlib-paper:4.6.4")
+    implementation("de.exlll:configlib-yaml:4.8.0")
+    implementation("de.exlll:configlib-paper:4.8.0")
 }
