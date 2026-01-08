@@ -8,8 +8,10 @@ import io.fairyproject.container.PreDestroy;
 import me.lotiny.misty.api.MistyApi;
 import me.lotiny.misty.api.customitem.CustomItemRegistry;
 import me.lotiny.misty.api.game.GameManager;
+import me.lotiny.misty.api.game.GameSetting;
 import me.lotiny.misty.api.profile.stats.StatType;
 import me.lotiny.misty.api.profile.stats.Stats;
+import me.lotiny.misty.api.scenario.ScenarioManager;
 import me.lotiny.misty.api.team.Team;
 import me.lotiny.misty.bukkit.storage.StorageRegistry;
 import me.lotiny.misty.bukkit.utils.UHCUtils;
@@ -29,6 +31,8 @@ public class MistyApiImpl implements MistyApi {
     private static GameManager gameManager;
     @Autowired
     private static StorageRegistry storageRegistry;
+    @Autowired
+    private static ScenarioManager scenarioManager;
 
     @PostInitialize
     public void onPostInit() {
@@ -42,43 +46,8 @@ public class MistyApiImpl implements MistyApi {
     }
 
     @Override
-    public int getTeamSize() {
-        return gameManager.getGame().getSetting().getTeamSize();
-    }
-
-    @Override
-    public int getFinalHeal() {
-        return gameManager.getGame().getSetting().getFinalHeal();
-    }
-
-    @Override
-    public int getGracePeriod() {
-        return gameManager.getGame().getSetting().getGracePeriod();
-    }
-
-    @Override
-    public int getBorder() {
-        return gameManager.getGame().getSetting().getBorderSize();
-    }
-
-    @Override
-    public int getFirstShrink() {
-        return gameManager.getGame().getSetting().getFirstShrink();
-    }
-
-    @Override
-    public int getNetherTime() {
-        return gameManager.getGame().getSetting().getNetherTime();
-    }
-
-    @Override
-    public int getAppleRate() {
-        return gameManager.getGame().getSetting().getAppleRate();
-    }
-
-    @Override
-    public boolean isTeamGame() {
-        return gameManager.getGame().getSetting().getTeamSize() > 1;
+    public GameSetting getGameSetting() {
+        return gameManager.getGame().getSetting();
     }
 
     @Override
@@ -89,6 +58,11 @@ public class MistyApiImpl implements MistyApi {
     @Override
     public Stats getPlayerStats(Player player, StatType statType) {
         return storageRegistry.getProfile(player.getUniqueId()).getStats(statType);
+    }
+
+    @Override
+    public ScenarioManager getScenarioManager() {
+        return scenarioManager;
     }
 
     @Override

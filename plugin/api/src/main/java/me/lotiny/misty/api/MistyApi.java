@@ -2,12 +2,13 @@ package me.lotiny.misty.api;
 
 import me.lotiny.misty.api.customitem.CustomItem;
 import me.lotiny.misty.api.customitem.CustomItemRegistry;
+import me.lotiny.misty.api.game.GameSetting;
 import me.lotiny.misty.api.profile.stats.StatType;
 import me.lotiny.misty.api.profile.stats.Stats;
+import me.lotiny.misty.api.scenario.ScenarioManager;
 import me.lotiny.misty.api.team.Team;
 import org.bukkit.entity.Player;
 
-import java.util.Optional;
 import java.util.UUID;
 
 public interface MistyApi {
@@ -16,25 +17,13 @@ public interface MistyApi {
         return MistyApiProvider.get();
     }
 
-    int getTeamSize();
-
-    int getFinalHeal();
-
-    int getGracePeriod();
-
-    int getBorder();
-
-    int getFirstShrink();
-
-    int getNetherTime();
-
-    int getAppleRate();
-
-    boolean isTeamGame();
+    GameSetting getGameSetting();
 
     Team getTeam(Player player);
 
     Stats getPlayerStats(Player player, StatType statType);
+
+    ScenarioManager getScenarioManager();
 
     boolean isPlaying(UUID uniqueId);
 
