@@ -3,8 +3,7 @@ package me.lotiny.misty.bukkit.storage.impl;
 import com.google.gson.JsonObject;
 import com.mongodb.BasicDBObject;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.ReplaceOptions;
+import com.mongodb.client.model.*;
 import com.mongodb.client.result.DeleteResult;
 import io.fairyproject.log.Log;
 import lombok.RequiredArgsConstructor;
@@ -148,8 +147,24 @@ public class MongoStorage<T> implements Storage<T> {
 
     @Override
     public void saveAll() {
+        if (cache.isEmpty()) return;
+
+        List<WriteModel<Document>> operations = new ArrayList<>();
+
         for (T object : cache.values()) {
-            saveAsync(object);
+            String key = serializer.getKey(object);
+            JsonObject jsonObject = serializer.toJson(object);
+            Document document = Document.parse(StorageRegistry.GSON.toJson(jsonObject));
+
+            ReplaceOneModel<Document> model = new ReplaceOneModel<>(
+                    Filters.eq(uniqueKey, key),
+                    document,
+                    new ReplaceOptions().upsert(true)
+            );
+
+            operations.add(model);
         }
+
+        collection.bulkWrite(operations, new BulkWriteOptions().ordered(false));
     }
 }

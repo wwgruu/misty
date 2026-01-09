@@ -251,8 +251,37 @@ public class MySqlStorage<T> implements Storage<T> {
 
     @Override
     public void saveAll() {
-        for (T object : cache.values()) {
-            saveAsync(object);
+        if (cache.isEmpty()) return;
+
+        String sql = "INSERT INTO " + tableName + " (" + uniqueKey + ", " + dataColumn + ")"
+                + " VALUES (?, ?)"
+                + " ON DUPLICATE KEY UPDATE " + dataColumn + " = VALUES(" + dataColumn + ")";
+
+        try (Connection conn = dataSource.getConnection()) {
+            conn.setAutoCommit(false);
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                for (T object : cache.values()) {
+                    String key = serializer.getKey(object);
+                    JsonObject jsonObject = serializer.toJson(object);
+                    String jsonString = StorageRegistry.GSON.toJson(jsonObject);
+
+                    pstmt.setString(1, key);
+                    pstmt.setString(2, jsonString);
+
+                    pstmt.addBatch();
+                }
+
+                pstmt.executeBatch();
+                conn.commit();
+            } catch (SQLException e) {
+                conn.rollback();
+                Log.error("Failed to save batch, rolling back", e);
+            } finally {
+                conn.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            Log.error("Failed to obtain connection for batch save", e);
         }
     }
 
