@@ -6,7 +6,7 @@ import io.fairyproject.container.InjectableComponent;
 import lombok.RequiredArgsConstructor;
 import me.lotiny.misty.api.team.Team;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import me.lotiny.misty.bukkit.utils.UHCUtils;
 
 @InjectableComponent

@@ -14,8 +14,8 @@ import me.lotiny.misty.bukkit.command.AbstractCommand;
 import me.lotiny.misty.bukkit.command.MistyPresenceProvider;
 import me.lotiny.misty.bukkit.config.Config;
 import me.lotiny.misty.bukkit.config.impl.PracticeConfig;
-import me.lotiny.misty.bukkit.enums.Message;
 import me.lotiny.misty.bukkit.manager.PracticeManager;
+import me.lotiny.misty.bukkit.utils.Message;
 
 @InjectableComponent
 @RequiredArgsConstructor

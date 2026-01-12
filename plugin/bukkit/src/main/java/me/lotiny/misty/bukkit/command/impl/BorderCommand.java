@@ -10,9 +10,9 @@ import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.GameSetting;
 import me.lotiny.misty.api.game.registry.GameRegistry;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
-import me.lotiny.misty.bukkit.enums.Message;
 import me.lotiny.misty.bukkit.manager.border.BorderManager;
 import me.lotiny.misty.bukkit.task.BorderTask;
+import me.lotiny.misty.bukkit.utils.Message;
 
 import java.util.Arrays;
 import java.util.Set;

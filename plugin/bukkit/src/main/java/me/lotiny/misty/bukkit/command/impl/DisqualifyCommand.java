@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.GameState;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
-import me.lotiny.misty.bukkit.enums.Message;
 import me.lotiny.misty.bukkit.provider.menus.staff.DisqualifyMenu;
+import me.lotiny.misty.bukkit.utils.Message;
 
 @InjectableComponent
 @RequiredArgsConstructor

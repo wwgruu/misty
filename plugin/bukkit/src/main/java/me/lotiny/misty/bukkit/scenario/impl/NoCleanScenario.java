@@ -7,7 +7,7 @@ import io.fairyproject.bukkit.metadata.Metadata;
 import io.fairyproject.bukkit.util.items.ItemBuilder;
 import io.fairyproject.metadata.MetadataKey;
 import me.lotiny.misty.api.scenario.Scenario;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import me.lotiny.misty.bukkit.utils.cooldown.PlayerCooldown;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

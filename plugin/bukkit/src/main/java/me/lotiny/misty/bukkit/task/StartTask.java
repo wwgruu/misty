@@ -14,7 +14,6 @@ import me.lotiny.misty.api.team.Team;
 import me.lotiny.misty.api.team.TeamManager;
 import me.lotiny.misty.bukkit.config.Config;
 import me.lotiny.misty.bukkit.config.impl.MainConfig;
-import me.lotiny.misty.bukkit.enums.Message;
 import me.lotiny.misty.bukkit.manager.PracticeManager;
 import me.lotiny.misty.bukkit.manager.WorldManager;
 import me.lotiny.misty.bukkit.manager.border.BorderManager;

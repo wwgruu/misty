@@ -9,7 +9,7 @@ import me.lotiny.misty.api.profile.Profile;
 import me.lotiny.misty.api.task.AbstractScheduleTask;
 import me.lotiny.misty.api.team.Team;
 import me.lotiny.misty.bukkit.config.impl.MainConfig;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import me.lotiny.misty.bukkit.utils.Utilities;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;

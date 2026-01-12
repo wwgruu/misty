@@ -16,7 +16,7 @@ import me.lotiny.misty.api.team.Team;
 import me.lotiny.misty.api.team.TeamManager;
 import me.lotiny.misty.bukkit.Permission;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import me.lotiny.misty.bukkit.utils.UHCUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

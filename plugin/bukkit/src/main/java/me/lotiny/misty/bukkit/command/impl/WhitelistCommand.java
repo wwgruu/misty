@@ -13,7 +13,7 @@ import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.registry.GameRegistry;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
 import me.lotiny.misty.bukkit.command.MistyPresenceProvider;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 
 import java.util.List;
 

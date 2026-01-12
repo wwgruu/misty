@@ -4,7 +4,7 @@ import io.fairyproject.container.Autowired;
 import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.registry.GameRegistry;
 import me.lotiny.misty.api.task.AbstractScheduleTask;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import me.lotiny.misty.bukkit.utils.TeamEx;
 import me.lotiny.misty.bukkit.utils.UHCUtils;
 import me.lotiny.misty.bukkit.utils.Utilities;

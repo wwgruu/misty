@@ -14,7 +14,7 @@ import me.lotiny.misty.api.team.Team;
 import me.lotiny.misty.api.team.TeamManager;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
 import me.lotiny.misty.bukkit.command.MistyPresenceProvider;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import org.bukkit.entity.Player;
 
 @InjectableComponent

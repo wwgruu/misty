@@ -6,7 +6,7 @@ import io.fairyproject.container.Autowired;
 import me.lotiny.misty.api.event.UHCMinuteEvent;
 import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.scenario.Scenario;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

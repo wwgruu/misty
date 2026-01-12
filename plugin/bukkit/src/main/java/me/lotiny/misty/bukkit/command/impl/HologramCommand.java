@@ -11,10 +11,10 @@ import io.fairyproject.util.CC;
 import lombok.RequiredArgsConstructor;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
 import me.lotiny.misty.bukkit.command.MistyPresenceProvider;
-import me.lotiny.misty.bukkit.enums.Message;
 import me.lotiny.misty.bukkit.manager.leaderboard.Leaderboard;
 import me.lotiny.misty.bukkit.manager.leaderboard.LeaderboardHologram;
 import me.lotiny.misty.bukkit.storage.StorageRegistry;
+import me.lotiny.misty.bukkit.utils.Message;
 
 @InjectableComponent
 @RequiredArgsConstructor

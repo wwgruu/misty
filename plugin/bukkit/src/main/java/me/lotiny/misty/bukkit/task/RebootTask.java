@@ -6,7 +6,7 @@ import lombok.Getter;
 import me.lotiny.misty.api.task.AbstractScheduleTask;
 import me.lotiny.misty.bukkit.config.Config;
 import me.lotiny.misty.bukkit.config.impl.MainConfig;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import me.lotiny.misty.bukkit.utils.TimeFormatUtils;
 import me.lotiny.misty.bukkit.utils.Utilities;
 import org.bukkit.Bukkit;

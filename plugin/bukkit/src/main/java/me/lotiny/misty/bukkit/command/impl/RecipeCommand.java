@@ -8,8 +8,8 @@ import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.GameState;
 import me.lotiny.misty.api.scenario.ScenarioManager;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
-import me.lotiny.misty.bukkit.enums.Message;
 import me.lotiny.misty.bukkit.provider.menus.user.recipes.ItemRecipeMenu;
+import me.lotiny.misty.bukkit.utils.Message;
 
 @InjectableComponent
 @RequiredArgsConstructor

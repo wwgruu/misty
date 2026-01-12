@@ -10,8 +10,8 @@ import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.GameState;
 import me.lotiny.misty.api.profile.stats.Stats;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
-import me.lotiny.misty.bukkit.enums.Message;
 import me.lotiny.misty.bukkit.utils.KeyEx;
+import me.lotiny.misty.bukkit.utils.Message;
 import me.lotiny.misty.bukkit.utils.UHCUtils;
 import org.bukkit.Bukkit;
 

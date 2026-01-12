@@ -7,7 +7,7 @@ import io.fairyproject.container.InjectableComponent;
 import lombok.RequiredArgsConstructor;
 import me.lotiny.misty.api.scenario.ScenarioManager;
 import me.lotiny.misty.bukkit.command.AbstractCommand;
-import me.lotiny.misty.bukkit.enums.Message;
+import me.lotiny.misty.bukkit.utils.Message;
 import org.bukkit.entity.Player;
 
 @InjectableComponent
