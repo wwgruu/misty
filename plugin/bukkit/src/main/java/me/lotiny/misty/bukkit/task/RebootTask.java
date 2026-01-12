@@ -51,7 +51,7 @@ public class RebootTask extends AbstractScheduleTask {
     }
 
     private void sendCountdownMessage() {
-        Utilities.broadcast(Message.REBOOT_TIME.toString()
+        Utilities.broadcast(Message.REBOOT_TIME
                 .replace("<time>", TimeFormatUtils.formatTimeUnit(getSeconds())));
     }
 }

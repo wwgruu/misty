@@ -46,45 +46,45 @@ public class RvbCommand extends AbstractCommand {
     @Command("red")
     public void onRed(BukkitCommandContext context, @Arg("player") Player player) {
         if (!scenarioManager.isEnabled(RED_VS_BLUE)) {
-            context.sendMessage(MessageType.ERROR, Message.SCENARIO_NOT_ENABLED.toString()
+            context.sendMessage(MessageType.ERROR, Message.SCENARIO_NOT_ENABLED
                     .replace(SCENARIO_PLACEHOLDER, RED_VS_BLUE));
             return;
         }
 
         Team redTeam = teamManager.createTeam(0, player);
         if (redTeam == null) {
-            context.sendMessage(MessageType.ERROR, Message.RVB_ALREADY_HAVE_CAPTAIN_RED.toString());
+            context.sendMessage(MessageType.ERROR, Message.RVB_ALREADY_HAVE_CAPTAIN_RED);
             return;
         }
 
         redCaptainName = player.getName();
-        context.sendMessage(MessageType.INFO, Message.RVB_ASSIGN_CAPTAIN_RED.toString()
+        context.sendMessage(MessageType.INFO, Message.RVB_ASSIGN_CAPTAIN_RED
                 .replace("<player>", player.getName()));
     }
 
     @Command("blue")
     public void onBlue(BukkitCommandContext context, @Arg("player") Player player) {
         if (!scenarioManager.isEnabled(RED_VS_BLUE)) {
-            context.sendMessage(MessageType.ERROR, Message.SCENARIO_NOT_ENABLED.toString()
+            context.sendMessage(MessageType.ERROR, Message.SCENARIO_NOT_ENABLED
                     .replace(SCENARIO_PLACEHOLDER, RED_VS_BLUE));
             return;
         }
 
         Team blueTeam = teamManager.createTeam(1, player);
         if (blueTeam == null) {
-            context.sendMessage(MessageType.ERROR, Message.RVB_ALREADY_HAVE_CAPTAIN_BLUE.toString());
+            context.sendMessage(MessageType.ERROR, Message.RVB_ALREADY_HAVE_CAPTAIN_BLUE);
             return;
         }
 
         blueCaptainName = player.getName();
-        context.sendMessage(MessageType.INFO, Message.RVB_ASSIGN_CAPTAIN_BLUE.toString()
+        context.sendMessage(MessageType.INFO, Message.RVB_ASSIGN_CAPTAIN_BLUE
                 .replace("<player>", player.getName()));
     }
 
     @Command("reset")
     public void onRemove(BukkitCommandContext context) {
         if (!scenarioManager.isEnabled(RED_VS_BLUE)) {
-            context.sendMessage(MessageType.ERROR, Message.SCENARIO_NOT_ENABLED.toString()
+            context.sendMessage(MessageType.ERROR, Message.SCENARIO_NOT_ENABLED
                     .replace(SCENARIO_PLACEHOLDER, RED_VS_BLUE));
             return;
         }
@@ -92,13 +92,13 @@ public class RvbCommand extends AbstractCommand {
         teamManager.getTeams().values().forEach(teamManager::deleteTeam);
         redCaptainName = "None";
         blueCaptainName = "None";
-        context.sendMessage(MessageType.INFO, Message.RVB_RESET_CAPTAINS.toString());
+        context.sendMessage(MessageType.INFO, Message.RVB_RESET_CAPTAINS);
     }
 
     @Command("info")
     public void onInfo(BukkitCommandContext context) {
         if (!scenarioManager.isEnabled(RED_VS_BLUE)) {
-            context.sendMessage(MessageType.ERROR, Message.SCENARIO_NOT_ENABLED.toString()
+            context.sendMessage(MessageType.ERROR, Message.SCENARIO_NOT_ENABLED
                     .replace(SCENARIO_PLACEHOLDER, RED_VS_BLUE));
             return;
         }

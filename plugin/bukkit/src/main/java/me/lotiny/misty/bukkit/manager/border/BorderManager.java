@@ -71,7 +71,7 @@ public class BorderManager {
     public void handleStartSeconds(int size) {
         GameRegistry registry = gameManager.getRegistry();
 
-        Utilities.broadcast(Message.BORDER_SHRUNK.toString().replace("<size>", String.valueOf(size)));
+        Utilities.broadcast(Message.BORDER_SHRUNK.replace("<size>", String.valueOf(size)));
 
         World uhcWorld = Bukkit.getWorld(registry.getUhcWorld());
         if (uhcWorld != null) {

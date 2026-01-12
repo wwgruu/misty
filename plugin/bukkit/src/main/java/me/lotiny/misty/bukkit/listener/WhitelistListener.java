@@ -25,11 +25,11 @@ public class WhitelistListener implements Listener {
 
         String message = null;
         if (state == GameState.SCATTERING) {
-            message = Message.LOGIN_DISALLOW_SCATTER.toString();
+            message = Message.LOGIN_DISALLOW_SCATTER;
         } else if (state == GameState.ENDING) {
-            message = Message.LOGIN_DISALLOW_END.toString();
+            message = Message.LOGIN_DISALLOW_END;
         } else if (registry.isWhitelist() && !registry.getWhitelistPlayers().contains(event.getName())) {
-            message = Message.LOGIN_DISALLOW_WHITELIST.toString();
+            message = Message.LOGIN_DISALLOW_WHITELIST;
         }
 
         if (message != null) {

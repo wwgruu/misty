@@ -37,12 +37,12 @@ public class LateScatterCommand extends AbstractCommand {
         mustBePlayer(context, player -> {
             GameRegistry registry = gameManager.getRegistry();
             if (!GameState.INGAME.equals(registry.getState())) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 
             if (!gameManager.getGame().getSetting().isLateScatter()) {
-                player.sendMessage(Message.LATE_SCATTER_DISABLED.toString());
+                player.sendMessage(Message.LATE_SCATTER_DISABLED);
                 return;
             }
 
@@ -50,7 +50,7 @@ public class LateScatterCommand extends AbstractCommand {
             if (UHCUtils.isAlive(uuid) || registry.getPlayers().containsKey(uuid) ||
                     (player != target && !player.hasPermission(Permission.LATE_SCATTER_OTHER)) ||
                     (gameManager.getRegistry().isPvpEnabled() && !player.hasPermission(Permission.LATE_SCATTER_BYPASS))) {
-                player.sendMessage(Message.LATE_SCATTER_CANT.toString());
+                player.sendMessage(Message.LATE_SCATTER_CANT);
                 return;
             }
 

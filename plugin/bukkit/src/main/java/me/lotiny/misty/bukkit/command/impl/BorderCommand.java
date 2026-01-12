@@ -42,7 +42,7 @@ public class BorderCommand extends AbstractCommand {
             GameSetting setting = gameManager.getGame().getSetting();
 
             if (!isSizeValid(size, setting.getBorderSize())) {
-                player.sendMessage(Message.BORDER_FORCE_SHRINK_INVALID.toString());
+                player.sendMessage(Message.BORDER_FORCE_SHRINK_INVALID);
                 return;
             }
 
@@ -52,7 +52,7 @@ public class BorderCommand extends AbstractCommand {
             borderTask.setForceShrink(true);
             borderTask.setSize(size);
 
-            player.sendMessage(Message.BORDER_FORCE_SHRINK_SHRUNK.toString()
+            player.sendMessage(Message.BORDER_FORCE_SHRINK_SHRUNK
                     .replace("<size>", String.valueOf(size)));
         });
     }

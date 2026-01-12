@@ -51,7 +51,7 @@ public class DataCommand extends AbstractCommand {
     @Command("reset")
     public void onReset(BukkitCommandContext context, @Arg("target") Profile profile) {
         storageRegistry.getProfileStorage().delete(profile);
-        context.sendMessage(MessageType.INFO, Message.DATA_RESET.toString()
+        context.sendMessage(MessageType.INFO, Message.DATA_RESET
                 .replace("<player>", profile.getName()));
     }
 
@@ -59,7 +59,7 @@ public class DataCommand extends AbstractCommand {
     public void onAdd(BukkitCommandContext context, @Arg("target") Profile profile, @Arg("statType") StatType data, @Arg("amount") int amount) {
         Stats stats = profile.getStats(data);
         stats.increase(amount);
-        context.sendMessage(MessageType.INFO, Message.DATA_INCREASED.toString()
+        context.sendMessage(MessageType.INFO, Message.DATA_INCREASED
                 .replace("<player>", profile.getName())
                 .replace("<data>", Utilities.getFormattedName(data.name()))
                 .replace("<amount>", String.valueOf(amount)));
@@ -74,7 +74,7 @@ public class DataCommand extends AbstractCommand {
     public void onRemove(BukkitCommandContext context, @Arg("target") Profile profile, @Arg("statType") StatType data, @Arg("amount") int amount) {
         Stats stats = profile.getStats(data);
         stats.decrease(amount);
-        context.sendMessage(MessageType.INFO, Message.DATA_DECREASED.toString()
+        context.sendMessage(MessageType.INFO, Message.DATA_DECREASED
                 .replace("<player>", profile.getName())
                 .replace("<data>", Utilities.getFormattedName(data.name()))
                 .replace("<amount>", String.valueOf(amount)));
@@ -89,7 +89,7 @@ public class DataCommand extends AbstractCommand {
     public void onSet(BukkitCommandContext context, @Arg("target") Profile profile, @Arg("statType") StatType data, @Arg("amount") int amount) {
         Stats stats = profile.getStats(data);
         stats.setAmount(amount);
-        context.sendMessage(MessageType.INFO, Message.DATA_SET.toString()
+        context.sendMessage(MessageType.INFO, Message.DATA_SET
                 .replace("<player>", profile.getName())
                 .replace("<data>", Utilities.getFormattedName(data.name()))
                 .replace("<amount>", String.valueOf(amount)));

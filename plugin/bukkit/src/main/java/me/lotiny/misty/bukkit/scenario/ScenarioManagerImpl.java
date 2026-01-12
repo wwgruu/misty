@@ -221,7 +221,7 @@ public class ScenarioManagerImpl implements ScenarioManager {
         }
 
         if (messageLog) {
-            Utilities.broadcast(Message.SCENARIO_ENABLED.toString()
+            Utilities.broadcast(Message.SCENARIO_ENABLED
                     .replace("<scenario>", scenario.getName())
                     .replace("<player>", (sender instanceof Player) ? sender.getName() : "Console"));
         }
@@ -257,7 +257,7 @@ public class ScenarioManagerImpl implements ScenarioManager {
         }
 
         if (messageLog) {
-            Utilities.broadcast(Message.SCENARIO_DISABLED.toString()
+            Utilities.broadcast(Message.SCENARIO_DISABLED
                     .replace("<scenario>", scenario.getName())
                     .replace("<player>", (sender instanceof Player) ? sender.getName() : "Console"));
         }

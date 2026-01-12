@@ -36,7 +36,7 @@ public class ScatterTask extends AbstractScheduleTask {
 
     @Override
     public void onCancel() {
-        Utilities.broadcast(Message.SCATTER_FINISHED.toString());
+        Utilities.broadcast(Message.SCATTER_FINISHED);
 
         LastCountdownTask task = new LastCountdownTask();
         gameManager.getRegistry().setLastCountdownTask(task);

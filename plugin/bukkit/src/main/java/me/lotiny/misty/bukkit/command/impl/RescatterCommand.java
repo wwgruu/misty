@@ -46,7 +46,7 @@ public class RescatterCommand extends AbstractCommand {
             Snapshot snapshot = Metadata.provideForPlayer(uuid).getOrNull(KeyEx.SNAPSHOT_KEY);
 
             if (UHCUtils.isAlive(uuid) || registry.isPvpEnabled() || snapshot == null) {
-                player.sendMessage(Message.RE_SCATTER_CANT.toString());
+                player.sendMessage(Message.RE_SCATTER_CANT);
                 return;
             }
 
@@ -54,14 +54,14 @@ public class RescatterCommand extends AbstractCommand {
             int teamSize = gameManager.getGame().getSetting().getTeamSize();
 
             if (teamSize > 1 && team.getMembers(true).size() >= teamSize) {
-                player.sendMessage(Message.RE_SCATTER_CANT.toString());
+                player.sendMessage(Message.RE_SCATTER_CANT);
                 return;
             }
 
             int limit = this.getLimit(player);
             int usage = usages.getOrDefault(uuid, 0);
             if (usage >= limit) {
-                player.sendMessage(Message.RE_SCATTER_LIMITED.toString()
+                player.sendMessage(Message.RE_SCATTER_LIMITED
                         .replace("<amount>", String.valueOf(limit)));
                 return;
             }
@@ -81,7 +81,7 @@ public class RescatterCommand extends AbstractCommand {
 
             MCSchedulers.getGlobalScheduler().schedule(() -> Bukkit.getPluginManager().callEvent(new PlayerScatterEvent(player, true)));
 
-            player.sendMessage(Message.RE_SCATTER_DONE.toString()
+            player.sendMessage(Message.RE_SCATTER_DONE
                     .replace("<amount>", String.valueOf(limit - usage - 1)));
         });
     }

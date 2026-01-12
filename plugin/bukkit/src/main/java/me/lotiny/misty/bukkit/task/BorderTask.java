@@ -83,7 +83,7 @@ public class BorderTask extends AbstractScheduleTask {
 
     private void createBorderMessageFirstShrink(int firstShrinkTime) {
         int shrinkIn = firstShrinkTime - getSeconds();
-        Utilities.broadcast(Message.BORDER_SHRINKING_TIME.toString()
+        Utilities.broadcast(Message.BORDER_SHRINKING_TIME
                 .replace("<size>", forceShrink ? String.valueOf(size) : String.valueOf(borderManager.getNextBorder()))
                 .replace("<time>", TimeFormatUtils.formatTimeUnit(shrinkIn)));
     }
@@ -117,7 +117,7 @@ public class BorderTask extends AbstractScheduleTask {
         String sizeValue = forceShrink ? String.valueOf(size) : String.valueOf(borderManager.getNextBorder());
         String timeValue = TimeFormatUtils.formatTimeUnit(seconds);
 
-        Utilities.broadcast(Message.BORDER_SHRINKING_TIME.toString()
+        Utilities.broadcast(Message.BORDER_SHRINKING_TIME
                 .replace("<size>", sizeValue)
                 .replace("<time>", timeValue));
     }

@@ -21,7 +21,7 @@ public class DisqualifyCommand extends AbstractCommand {
     public void onCommand(BukkitCommandContext context) {
         mustBePlayer(context, player -> {
             if (gameManager.getRegistry().getState() != GameState.INGAME) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 

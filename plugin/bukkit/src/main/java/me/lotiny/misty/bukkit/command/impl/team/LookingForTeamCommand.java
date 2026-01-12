@@ -38,12 +38,12 @@ public class LookingForTeamCommand extends AbstractCommand {
             GameRegistry registry = gameManager.getRegistry();
             GameState gameState = registry.getState();
             if (setting.getTeamSize() == 1 || scenarioManager.isEnabled("Red vs Blue") || scenarioManager.isEnabled("Love At First Sight")) {
-                player.sendMessage(Message.TEAM_DISABLED.toString());
+                player.sendMessage(Message.TEAM_DISABLED);
                 return;
             }
 
             if (gameState == GameState.ENDING || gameState == GameState.SCATTERING) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 
@@ -54,7 +54,7 @@ public class LookingForTeamCommand extends AbstractCommand {
                 sendLookingForTeamMessage(player);
             } else {
                 if (team.getMembers(true).size() >= maxTeamSize) {
-                    player.sendMessage(Message.TEAM_FULL.toString());
+                    player.sendMessage(Message.TEAM_FULL);
                     return;
                 }
 

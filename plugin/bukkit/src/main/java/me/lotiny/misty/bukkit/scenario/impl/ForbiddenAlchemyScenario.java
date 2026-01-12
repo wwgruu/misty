@@ -61,7 +61,7 @@ public class ForbiddenAlchemyScenario extends Scenario {
             if (drop != null && drop.isSupported()) {
                 UHCUtils.dropItem(block.getLocation(), ItemStackUtils.of(drop));
                 PlayerUtils.playSound(XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
-                player.sendMessage(Message.FORBIDDEN_ALCHEMY_DROP.toString()
+                player.sendMessage(Message.FORBIDDEN_ALCHEMY_DROP
                         .replace("<item>", drop.friendlyName()));
             }
         }

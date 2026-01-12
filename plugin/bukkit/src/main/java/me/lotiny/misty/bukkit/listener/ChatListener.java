@@ -97,7 +97,7 @@ public class ChatListener implements Listener {
 
         if (!player.hasPermission(Permission.HOST_PERMISSION)) {
             event.setCancelled(true);
-            player.sendMessage(Message.CHAT_DISABLED.toString());
+            player.sendMessage(Message.CHAT_DISABLED);
             return true;
         }
         return false;

@@ -126,10 +126,10 @@ public class GameSettingImpl implements GameSetting {
         if (sender != null) {
             String message;
             if (value instanceof Boolean b) {
-                message = b ? Message.CONFIG_CHANGED_ENABLED.toString()
-                        : Message.CONFIG_CHANGED_DISABLED.toString();
+                message = b ? Message.CONFIG_CHANGED_ENABLED
+                        : Message.CONFIG_CHANGED_DISABLED;
             } else {
-                message = Message.CONFIG_CHANGED.toString()
+                message = Message.CONFIG_CHANGED
                         .replace("<value>", value.toString());
             }
 

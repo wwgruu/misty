@@ -47,10 +47,10 @@ public class EntropyScenario extends Scenario {
 
                     if (levels > 0) {
                         player.setLevel(levels - 1);
-                        player.sendMessage(Message.ENTROPY_LEVEL.toString());
+                        player.sendMessage(Message.ENTROPY_LEVEL);
                     } else {
                         player.setHealth(0);
-                        player.sendMessage(Message.ENTROPY_DEAD.toString());
+                        player.sendMessage(Message.ENTROPY_DEAD);
                     }
                 }
             }

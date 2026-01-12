@@ -29,10 +29,10 @@ public class TeamImpl implements Team {
     @Autowired
     private static TeamManager teamManager;
 
-    private int id;
+    private final int id;
     private Profile leader;
-    private List<UUID> members;
-    private MetaStorage storage;
+    private final List<UUID> members;
+    private final MetaStorage storage;
 
     public TeamImpl(int id, Profile leader) {
         this.id = id;
@@ -96,13 +96,13 @@ public class TeamImpl implements Team {
             setTeamKills(UHCUtils.getGameKills(player));
         }
 
-        sendMessage(Message.TEAM_MEMBER_JOINED.toString()
+        sendMessage(Message.TEAM_MEMBER_JOINED
                 .replace("<player>", player.getName()));
     }
 
     @Override
     public void removeMember(Player player) {
-        sendMessage(Message.TEAM_MEMBER_LEFT.toString()
+        sendMessage(Message.TEAM_MEMBER_LEFT
                 .replace("<player>", player.getName()));
 
         this.members.remove(player.getUniqueId());

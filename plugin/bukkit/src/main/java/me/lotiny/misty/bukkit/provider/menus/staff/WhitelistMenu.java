@@ -68,7 +68,7 @@ public class WhitelistMenu extends MistyPaginatedMenu {
 
                         registry.getWhitelistPlayers().remove(whitelisted);
                         PlayerUtils.playSound(clickedPlayer, XSound.BLOCK_ANVIL_BREAK, XSound.UI_BUTTON_CLICK);
-                        clickedPlayer.sendMessage(Message.WHITELIST_REMOVE.toString()
+                        clickedPlayer.sendMessage(Message.WHITELIST_REMOVE
                                 .replace("<player>", whitelisted));
 
                         open(clickedPlayer);

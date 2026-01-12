@@ -84,7 +84,7 @@ public class StartTask extends AbstractScheduleTask {
                     practiceManager.setOpened(false, Bukkit.getConsoleSender());
                 }
 
-                Utilities.broadcast(Message.SCATTER_TIME.toString()
+                Utilities.broadcast(Message.SCATTER_TIME
                         .replace("<time>", TimeFormatUtils.formatTimeUnit(currentSeconds)));
             }
         };

@@ -37,11 +37,11 @@ public class ScheduleCommand extends AbstractCommand {
 
         if (time.equalsIgnoreCase("cancel")) {
             if (startTask == null) {
-                context.sendMessage(MessageType.INFO, Message.SCHEDULE_NO_SCHEDULE.toString());
+                context.sendMessage(MessageType.INFO, Message.SCHEDULE_NO_SCHEDULE);
             } else {
                 startTask.remove();
                 registry.setStartTask(null);
-                context.sendMessage(MessageType.INFO, Message.SCHEDULE_CANCEL.toString());
+                context.sendMessage(MessageType.INFO, Message.SCHEDULE_CANCEL);
             }
 
             return;
@@ -50,7 +50,7 @@ public class ScheduleCommand extends AbstractCommand {
         boolean force = false;
         if (startTask != null) {
             if (startTask.isForce()) {
-                context.sendMessage(MessageType.INFO, Message.SCHEDULE_ALREADY_SET.toString());
+                context.sendMessage(MessageType.INFO, Message.SCHEDULE_ALREADY_SET);
                 return;
             }
 
@@ -99,7 +99,7 @@ public class ScheduleCommand extends AbstractCommand {
         int seconds = Math.toIntExact(inputTime / 1000);
 
         if (seconds < 10) {
-            context.sendMessage(MessageType.INFO, Message.SCHEDULE_MINIMUM.toString());
+            context.sendMessage(MessageType.INFO, Message.SCHEDULE_MINIMUM);
             return;
         }
 
@@ -115,7 +115,7 @@ public class ScheduleCommand extends AbstractCommand {
         registry.setStartTask(task);
         task.run(true, 20L);
 
-        context.sendMessage(MessageType.INFO, Message.SCHEDULE_SET.toString()
+        context.sendMessage(MessageType.INFO, Message.SCHEDULE_SET
                 .replace("<time>", FormatUtil.formatMillis(inputTime)));
 
         if (seconds <= (Config.getMainConfig().getWhitelistOffBefore() * 60)) {

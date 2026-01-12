@@ -84,7 +84,7 @@ public class CentralEnchantmentScenario extends Scenario {
         boolean enchant = Metadata.provideForBlock(block).getOrDefault(ENCHANT_KEY, false);
         if (enchant) {
             event.setCancelled(true);
-            player.sendMessage(Message.SCENARIO_BLOCK_ACTION.toString()
+            player.sendMessage(Message.SCENARIO_BLOCK_ACTION
                     .replace("<scenario>", this.getName()));
         }
     }
@@ -99,7 +99,7 @@ public class CentralEnchantmentScenario extends Scenario {
         boolean enchant = Metadata.provideForBlock(block).getOrDefault(ENCHANT_KEY, false);
         if (!enchant) {
             event.setCancelled(true);
-            player.sendMessage(Message.SCENARIO_BLOCK_ACTION.toString()
+            player.sendMessage(Message.SCENARIO_BLOCK_ACTION
                     .replace("<scenario>", this.getName()));
         }
     }

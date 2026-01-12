@@ -38,10 +38,10 @@ public class BatsScenario extends Scenario {
                 Player player = bat.getKiller();
                 if (Fairy.random().nextInt(100) < 95) {
                     UHCUtils.dropItem(bat.getLocation(), XMaterial.GOLDEN_APPLE.parseItem());
-                    player.sendMessage(Message.BATS_LUCKY.toString());
+                    player.sendMessage(Message.BATS_LUCKY);
                 } else {
                     bat.getKiller().setHealth(0);
-                    player.sendMessage(Message.BATS_UNLUCKY.toString());
+                    player.sendMessage(Message.BATS_UNLUCKY);
                 }
             }
         }

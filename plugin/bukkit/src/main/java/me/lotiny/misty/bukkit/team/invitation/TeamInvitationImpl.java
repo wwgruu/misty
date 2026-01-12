@@ -30,14 +30,14 @@ public class TeamInvitationImpl implements TeamInvitation {
     @Override
     public void send() {
         teamManager.getInvitationCooldown().addCooldown(this);
-        inviter.sendMessage(Message.TEAM_INVITE_SEND.toString()
+        inviter.sendMessage(Message.TEAM_INVITE_SEND
                 .replace("<invited>", invited.getName())
                 .replace("<inviter>", inviter.getName()));
 
         MCPlayer mcInvited = MCPlayer.from(invited);
         if (mcInvited != null) {
             Component component = Component.text()
-                    .append(LegacyAdventureUtil.decode(Message.TEAM_INVITE_RECEIVED.toString()
+                    .append(LegacyAdventureUtil.decode(Message.TEAM_INVITE_RECEIVED
                             .replace("<invited>", invited.getName())
                             .replace("<inviter>", inviter.getName())
                     ))
@@ -52,7 +52,7 @@ public class TeamInvitationImpl implements TeamInvitation {
     @Override
     public void accept() {
         if (!teamManager.getInvitationCooldown().isCooldown(this)) {
-            invited.sendMessage(Message.TEAM_JOIN_FAILED.toString());
+            invited.sendMessage(Message.TEAM_JOIN_FAILED);
             return;
         }
 

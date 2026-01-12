@@ -43,7 +43,7 @@ public class BetterEnchantScenario extends Scenario {
         ItemStack item = PlayerUtils.getItemInHand(player);
         if (item != null && XMaterial.ENCHANTED_BOOK.isSimilar(item)) {
             PlayerUtils.setItemInHand(player, XMaterial.BOOK.parseItem());
-            player.sendMessage(Message.BETTER_ENCHANT_USED.toString());
+            player.sendMessage(Message.BETTER_ENCHANT_USED);
         }
     }
 }

@@ -109,10 +109,10 @@ public class GameRegistryImpl implements GameRegistry {
 
         String player = sender instanceof Player ? sender.getName() : "Console";
         if (enabled) {
-            Utilities.broadcast(Message.WHITELIST_ON.toString()
+            Utilities.broadcast(Message.WHITELIST_ON
                     .replace("<player>", player));
         } else {
-            Utilities.broadcast(Message.WHITELIST_OFF.toString()
+            Utilities.broadcast(Message.WHITELIST_OFF
                     .replace("<player>", player));
         }
     }

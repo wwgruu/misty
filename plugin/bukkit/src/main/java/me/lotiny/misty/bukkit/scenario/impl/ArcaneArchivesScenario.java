@@ -55,7 +55,7 @@ public class ArcaneArchivesScenario extends Scenario {
 
             PlayerUtils.playSound(player, XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
             UHCUtils.dropItem(block.getLocation(), ItemStackUtils.of(material));
-            player.sendMessage(Message.ARCANE_ARCHIVES_DROP.toString()
+            player.sendMessage(Message.ARCANE_ARCHIVES_DROP
                     .replace("<item>", material.friendlyName()));
         }
     }

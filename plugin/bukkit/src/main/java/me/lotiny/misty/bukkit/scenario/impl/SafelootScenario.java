@@ -47,7 +47,7 @@ public class SafelootScenario extends Scenario {
             Metadata.provideForBlock(block).ifPresent(CHEST_KEY, team -> {
                 if (UHCUtils.getTeam(player) != team) {
                     event.setCancelled(true);
-                    player.sendMessage(Message.SAFELOOT_LOCKED.toString());
+                    player.sendMessage(Message.SAFELOOT_LOCKED);
                 }
             });
         }

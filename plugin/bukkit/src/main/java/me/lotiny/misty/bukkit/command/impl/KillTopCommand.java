@@ -30,7 +30,7 @@ public class KillTopCommand extends AbstractCommand {
             GameState gameState = gameManager.getRegistry().getState();
 
             if (gameState == GameState.LOBBY || gameState == GameState.SCATTERING) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 

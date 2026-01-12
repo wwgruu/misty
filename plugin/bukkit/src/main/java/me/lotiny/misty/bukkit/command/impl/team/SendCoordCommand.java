@@ -20,11 +20,11 @@ public class SendCoordCommand extends AbstractCommand {
             Team team = UHCUtils.getTeam(player);
 
             if (team == null) {
-                player.sendMessage(Message.TEAM_NOT_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_NOT_IN_TEAM);
                 return;
             }
 
-            team.sendMessage(Message.TEAM_SEND_COORDS.toString()
+            team.sendMessage(Message.TEAM_SEND_COORDS
                     .replace("<player>", player.getName())
                     .replace("<x>", String.valueOf(player.getLocation().getBlockX()))
                     .replace("<y>", String.valueOf(player.getLocation().getBlockY()))

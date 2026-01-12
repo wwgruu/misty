@@ -25,19 +25,19 @@ public class BackpackCommand extends AbstractCommand {
     public void onCommand(BukkitCommandContext context) {
         mustBePlayer(context, player -> {
             if (!scenarioManager.isEnabled("Backpacks")) {
-                player.sendMessage(Message.SCENARIO_NOT_ENABLED.toString()
+                player.sendMessage(Message.SCENARIO_NOT_ENABLED
                         .replace("<scenario>", "Backpacks"));
                 return;
             }
 
             if (gameManager.getRegistry().getState() != GameState.INGAME) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 
             Team team = UHCUtils.getTeam(player);
             if (team == null) {
-                player.sendMessage(Message.TEAM_NOT_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_NOT_IN_TEAM);
                 return;
             }
 

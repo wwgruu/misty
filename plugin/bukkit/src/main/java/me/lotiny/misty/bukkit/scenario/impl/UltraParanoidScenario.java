@@ -39,7 +39,7 @@ public class UltraParanoidScenario extends Scenario {
         Location location = block.getLocation();
 
         if (XTag.DIAMOND_ORES.isTagged(xMaterial) || XTag.GOLD_ORES.isTagged(xMaterial)) {
-            Utilities.broadcast(Message.ULTRA_PARANOID_BROADCAST.toString()
+            Utilities.broadcast(Message.ULTRA_PARANOID_BROADCAST
                     .replace("<player>", player.getName())
                     .replace("<block>", block.getType().toString())
                     .replace("<x>", String.valueOf(location.getBlockX()))

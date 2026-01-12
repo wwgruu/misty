@@ -53,16 +53,16 @@ public class DoNotDisturbScenario extends Scenario {
 
         if (!UHCUtils.isCombatWith(damagerTeam, damagedTeam) || !UHCUtils.isCombatWith(damagedTeam, damagerTeam)) {
             event.setCancelled(true);
-            damagerTeam.sendMessage(Message.DO_NOT_DISTURB_NOT_LINKED_TO.toString());
+            damagerTeam.sendMessage(Message.DO_NOT_DISTURB_NOT_LINKED_TO);
         }
     }
 
     private void sendLinkedMessage(Team damagerTeam, Team damagedTeam, String damagerName, String damagedName) {
         String damagerMessage = (gameManager.getGame().getSetting().getTeamSize() > 1) ? "Team #" + damagedTeam.getId() : damagedName;
         String damagedMessage = (gameManager.getGame().getSetting().getTeamSize() > 1) ? "Team #" + damagerTeam.getId() : damagerName;
-        damagerTeam.sendMessage(Message.DO_NOT_DISTURB_LINKED_WITH.toString()
+        damagerTeam.sendMessage(Message.DO_NOT_DISTURB_LINKED_WITH
                 .replace("<linked>", damagerMessage));
-        damagedTeam.sendMessage(Message.DO_NOT_DISTURB_LINKED_WITH.toString()
+        damagedTeam.sendMessage(Message.DO_NOT_DISTURB_LINKED_WITH
                 .replace("<linked>", damagedMessage));
     }
 }

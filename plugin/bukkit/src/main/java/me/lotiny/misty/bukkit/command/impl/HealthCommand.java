@@ -21,7 +21,7 @@ public class HealthCommand extends AbstractCommand {
     public void onCommand(BukkitCommandContext context, @Arg(value = "target", defaultValue = "self") Player target) {
         mustBePlayer(context, player -> {
             if (scenarioManager.isEnabled("Secret Health")) {
-                player.sendMessage(Message.SCENARIO_BLOCK_ACTION.toString()
+                player.sendMessage(Message.SCENARIO_BLOCK_ACTION
                         .replace("<scenario>", "Secret Health"));
                 return;
             }
@@ -31,7 +31,7 @@ public class HealthCommand extends AbstractCommand {
     }
 
     private void sendHealth(Player player, Player target) {
-        player.sendMessage(Message.HEALTH.toString()
+        player.sendMessage(Message.HEALTH
                 .replace("<target>", target.getName())
                 .replace("<health>", String.valueOf(Math.round(target.getHealth()))));
     }

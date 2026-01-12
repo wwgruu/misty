@@ -53,9 +53,9 @@ public class ChumpCharityScenario extends Scenario {
 
             if (lowest != null) {
                 lowest.setHealth(PlayerUtils.getMaxHealth(lowest));
-                lowest.sendMessage(Message.CHUMP_CHARITY_PLAYER.toString());
+                lowest.sendMessage(Message.CHUMP_CHARITY_PLAYER);
 
-                Utilities.broadcast(Message.CHUMP_CHARITY_BROADCAST.toString()
+                Utilities.broadcast(Message.CHUMP_CHARITY_BROADCAST
                         .replace("<player>", lowest.getName()));
             }
         }

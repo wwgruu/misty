@@ -114,7 +114,7 @@ public class ConfigMenu extends MistyPaginatedMenu {
                 ((player, clickType) -> {
                     if (!player.hasPermission(Permission.HOST_PERMISSION)) return;
                     if (gameManager.getRegistry().getState() != GameState.LOBBY) {
-                        player.sendMessage(Message.WRONG_STATE.toString());
+                        player.sendMessage(Message.WRONG_STATE);
                         return;
                     }
 
@@ -145,7 +145,7 @@ public class ConfigMenu extends MistyPaginatedMenu {
                 ((player, clickType) -> {
                     if (!player.hasPermission(Permission.HOST_PERMISSION)) return;
                     if (gameManager.getRegistry().getState() != GameState.LOBBY) {
-                        player.sendMessage(Message.WRONG_STATE.toString());
+                        player.sendMessage(Message.WRONG_STATE);
                         return;
                     }
 

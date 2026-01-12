@@ -77,13 +77,13 @@ public class PlayerSwapScenario extends Scenario {
                 player2.teleport(location1);
             });
 
-            player1.sendMessage(Message.PLAYER_SWAP_PLAYER.toString()
+            player1.sendMessage(Message.PLAYER_SWAP_PLAYER
                     .replace("<player>", player2.getName()));
 
-            player2.sendMessage(Message.PLAYER_SWAP_PLAYER.toString()
+            player2.sendMessage(Message.PLAYER_SWAP_PLAYER
                     .replace("<player>", player1.getName()));
 
-            Utilities.broadcast(Message.PLAYER_SWAP_BROADCAST.toString()
+            Utilities.broadcast(Message.PLAYER_SWAP_BROADCAST
                     .replace("<player1>", player1.getName())
                     .replace("<player2>", player2.getName()));
         }

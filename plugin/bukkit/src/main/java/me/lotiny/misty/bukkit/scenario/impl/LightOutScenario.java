@@ -33,7 +33,7 @@ public class LightOutScenario extends Scenario {
 
         if (XBlock.isSimilar(event.getBlock(), XMaterial.TORCH)) {
             event.setCancelled(true);
-            player.sendMessage(Message.SCENARIO_BLOCK_ACTION.toString()
+            player.sendMessage(Message.SCENARIO_BLOCK_ACTION
                     .replace("<scenario>", this.getName()));
         }
     }

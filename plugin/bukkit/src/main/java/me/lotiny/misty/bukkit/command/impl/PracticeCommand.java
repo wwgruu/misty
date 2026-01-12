@@ -56,7 +56,7 @@ public class PracticeCommand extends AbstractCommand {
         mustBePlayer(context, player -> {
             Position position = BukkitPos.toMCPos(player.getLocation());
             Config.getPracticeConfig().setLocation(BukkitPos.toBukkitLocation(position));
-            player.sendMessage(Message.PRACTICE_SET_LOCATION.toString());
+            player.sendMessage(Message.PRACTICE_SET_LOCATION);
         });
     }
 
@@ -68,14 +68,14 @@ public class PracticeCommand extends AbstractCommand {
             config.getKit().setItems(player.getInventory().getContents());
             config.save();
 
-            player.sendMessage(Message.PRACTICE_SET_KIT.toString());
+            player.sendMessage(Message.PRACTICE_SET_KIT);
         });
     }
 
     @Command(value = "setmax", permissionNode = "misty.command.practice")
     public void onSetMax(BukkitCommandContext context, @Arg("amount") int amount) {
         practiceManager.setMaxPlayers(amount);
-        context.sendMessage(MessageType.INFO, Message.PRACTICE_SET_MAX_PLAYERS.toString()
+        context.sendMessage(MessageType.INFO, Message.PRACTICE_SET_MAX_PLAYERS
                 .replace("<amount>", String.valueOf(amount)));
     }
 

@@ -23,9 +23,9 @@ public class ChatCommand extends AbstractCommand {
         boolean isChatMuted = registry.isChatMuted();
 
         if (isChatMuted) {
-            context.sendMessage(MessageType.ERROR, Message.CHAT_ALREADY_MUTE.toString());
+            context.sendMessage(MessageType.ERROR, Message.CHAT_ALREADY_MUTE);
         } else {
-            context.sendMessage(MessageType.INFO, Message.CHAT_MUTE.toString());
+            context.sendMessage(MessageType.INFO, Message.CHAT_MUTE);
             registry.setChatMuted(true);
         }
     }
@@ -36,9 +36,9 @@ public class ChatCommand extends AbstractCommand {
         boolean isChatMuted = registry.isChatMuted();
 
         if (!isChatMuted) {
-            context.sendMessage(MessageType.ERROR, Message.CHAT_ALREADY_UNMUTE.toString());
+            context.sendMessage(MessageType.ERROR, Message.CHAT_ALREADY_UNMUTE);
         } else {
-            context.sendMessage(MessageType.INFO, Message.CHAT_UNMUTE.toString());
+            context.sendMessage(MessageType.INFO, Message.CHAT_UNMUTE);
             registry.setChatMuted(false);
         }
     }

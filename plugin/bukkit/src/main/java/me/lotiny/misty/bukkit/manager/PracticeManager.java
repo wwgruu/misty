@@ -64,12 +64,12 @@ public class PracticeManager implements Listener {
 
     public void join(Player player) {
         if (!this.opened) {
-            player.sendMessage(Message.PRACTICE_IS_DISABLED.toString());
+            player.sendMessage(Message.PRACTICE_IS_DISABLED);
             return;
         }
 
         if (this.players.size() >= this.maxPlayers) {
-            player.sendMessage(Message.PRACTICE_FULL.toString());
+            player.sendMessage(Message.PRACTICE_FULL);
             return;
         }
 
@@ -128,7 +128,7 @@ public class PracticeManager implements Listener {
             this.opened = true;
 
             Bukkit.getPluginManager().registerEvents(this, BukkitPlugin.INSTANCE);
-            Utilities.broadcast(Message.PRACTICE_ENABLED.toString()
+            Utilities.broadcast(Message.PRACTICE_ENABLED
                     .replace("<player>", sender instanceof Player ? sender.getName() : "Console"));
             return;
         }
@@ -149,7 +149,7 @@ public class PracticeManager implements Listener {
 
         this.players.clear();
         HandlerList.unregisterAll(this);
-        Utilities.broadcast(Message.PRACTICE_DISABLED.toString()
+        Utilities.broadcast(Message.PRACTICE_DISABLED
                 .replace("<player>", sender instanceof Player ? sender.getName() : "Console"));
     }
 

@@ -40,12 +40,12 @@ public class NoCleanScenario extends Scenario {
             PlayerCooldown cooldown = new PlayerCooldown(20_000L);
             cooldown.addCooldown(killer);
             cooldown.removalListener(player -> {
-                player.sendMessage(Message.NO_CLEAN_EXPIRED.toString());
+                player.sendMessage(Message.NO_CLEAN_EXPIRED);
                 Metadata.provideForPlayer(player).remove(NO_CLEAN_KEY);
             });
 
             Metadata.provideForPlayer(killer).put(NO_CLEAN_KEY, cooldown);
-            killer.sendMessage(Message.NO_CLEAN_APPLIED.toString());
+            killer.sendMessage(Message.NO_CLEAN_APPLIED);
         }
     }
 
@@ -68,7 +68,7 @@ public class NoCleanScenario extends Scenario {
         PlayerCooldown damagedCooldown = Metadata.provideForPlayer(damaged).getOrNull(NO_CLEAN_KEY);
         if (damagedCooldown != null) {
             event.setCancelled(true);
-            damager.sendMessage(Message.NO_CLEAN_PROTECTED.toString());
+            damager.sendMessage(Message.NO_CLEAN_PROTECTED);
             return;
         }
 
@@ -76,7 +76,7 @@ public class NoCleanScenario extends Scenario {
         if (damagerCooldown != null) {
             damagerCooldown.removeCooldown(damager);
             Metadata.provideForPlayer(damager).remove(NO_CLEAN_KEY);
-            damager.sendMessage(Message.NO_CLEAN_EXPIRED.toString());
+            damager.sendMessage(Message.NO_CLEAN_EXPIRED);
         }
     }
 }

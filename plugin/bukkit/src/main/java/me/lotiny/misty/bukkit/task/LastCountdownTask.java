@@ -40,7 +40,7 @@ public class LastCountdownTask extends AbstractScheduleTask {
 
             if (isImportanceSeconds(getSeconds())) {
                 PlayerUtils.playSound(XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
-                Utilities.broadcast(Message.START_TIME.toString()
+                Utilities.broadcast(Message.START_TIME
                         .replace("<time>", TimeFormatUtils.formatTimeUnit(getSeconds())));
             }
         };

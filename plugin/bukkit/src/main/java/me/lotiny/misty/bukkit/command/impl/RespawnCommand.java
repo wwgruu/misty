@@ -40,7 +40,7 @@ public class RespawnCommand extends AbstractCommand {
     private void handleRespawn(Player player, Player target) {
         GameRegistry registry = gameManager.getRegistry();
         if (registry.getState() != GameState.INGAME) {
-            player.sendMessage(Message.WRONG_STATE.toString());
+            player.sendMessage(Message.WRONG_STATE);
             return;
         }
 
@@ -48,14 +48,14 @@ public class RespawnCommand extends AbstractCommand {
         Profile targetProfile = storageRegistry.getProfile(targetUuid);
         Snapshot snapshot = Metadata.provideForPlayer(targetUuid).getOrNull(KeyEx.SNAPSHOT_KEY);
         if (snapshot == null || !UHCUtils.isAlive(targetUuid)) {
-            player.sendMessage(Message.RESPAWN_CANT.toString());
+            player.sendMessage(Message.RESPAWN_CANT);
             return;
         }
 
         Team team = snapshot.getTeam();
         int teamSize = gameManager.getGame().getSetting().getTeamSize();
         if (teamSize > 1 && team.getMembers(true).size() >= teamSize) {
-            player.sendMessage(Message.RESPAWN_CANT.toString());
+            player.sendMessage(Message.RESPAWN_CANT);
             return;
         }
 
@@ -79,7 +79,7 @@ public class RespawnCommand extends AbstractCommand {
         target.getInventory().setArmorContents(snapshot.getArmors());
         target.setLevel(snapshot.getLevel());
 
-        player.sendMessage(Message.RESPAWN_DONE.toString()
+        player.sendMessage(Message.RESPAWN_DONE
                 .replace("<player>", target.getName()));
     }
 }

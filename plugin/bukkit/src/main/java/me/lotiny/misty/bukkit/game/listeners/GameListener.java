@@ -222,7 +222,7 @@ public class GameListener implements Listener {
         if (event.getCause() == EntityDamageEvent.DamageCause.PROJECTILE &&
                 player.getHealth() - event.getFinalDamage() > 0.0D &&
                 event.getDamage() > 0) {
-            damager.sendMessage(Message.HEALTH.toString()
+            damager.sendMessage(Message.HEALTH
                     .replace("<target>", player.getName())
                     .replace("<health>", String.valueOf(Math.round(player.getHealth()))));
         }
@@ -354,7 +354,7 @@ public class GameListener implements Listener {
         World world = event.getBed().getLocation().getWorld();
         if (world != null && world.getEnvironment() == World.Environment.NETHER) {
             event.setCancelled(true);
-            player.sendMessage(Message.BED_BOMB_DISABLED.toString());
+            player.sendMessage(Message.BED_BOMB_DISABLED);
         }
     }
 

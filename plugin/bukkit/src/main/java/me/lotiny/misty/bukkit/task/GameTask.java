@@ -68,10 +68,10 @@ public class GameTask extends AbstractScheduleTask {
                 remaining == 30 || remaining == 10 ||
                 (remaining <= 5 && remaining > 0)) {
             if (configType == ConfigType.GRACE_PERIOD) {
-                Utilities.broadcast(Message.GRACE_PERIOD_TIME.toString()
+                Utilities.broadcast(Message.GRACE_PERIOD_TIME
                         .replace("<time>", TimeFormatUtils.formatTimeUnit(remaining)));
             } else {
-                Utilities.broadcast(Message.FINAL_HEAL_TIME.toString()
+                Utilities.broadcast(Message.FINAL_HEAL_TIME
                         .replace("<time>", TimeFormatUtils.formatTimeUnit(remaining)));
             }
         }
@@ -80,7 +80,7 @@ public class GameTask extends AbstractScheduleTask {
     @Override
     public void onStart() {
         setSeconds(0);
-        Utilities.broadcast(Message.GAME_STATED.toString());
+        Utilities.broadcast(Message.GAME_STATED);
     }
 }
 

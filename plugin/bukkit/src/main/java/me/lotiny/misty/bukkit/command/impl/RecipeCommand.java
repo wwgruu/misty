@@ -23,13 +23,13 @@ public class RecipeCommand extends AbstractCommand {
     public void onCommand(BukkitCommandContext context) {
         mustBePlayer(context, player -> {
             if (!scenarioManager.isEnabled("Custom Craft")) {
-                player.sendMessage(Message.SCENARIO_NOT_ENABLED.toString()
+                player.sendMessage(Message.SCENARIO_NOT_ENABLED
                         .replace("<scenario>", "Custom Craft"));
                 return;
             }
 
             if (gameManager.getRegistry().getState() != GameState.INGAME) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 

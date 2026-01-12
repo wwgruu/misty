@@ -47,7 +47,7 @@ public class HologramCommand extends AbstractCommand {
                         hologram.spawn();
                     });
 
-            player.sendMessage(Message.HOLOGRAM_CREATE.toString()
+            player.sendMessage(Message.HOLOGRAM_CREATE
                     .replace("<type>", leaderboard.getDisplayName()));
         });
     }
@@ -59,7 +59,7 @@ public class HologramCommand extends AbstractCommand {
             storageRegistry.getLeaderboardHologramStorage().delete(hologram);
             hologram.remove();
 
-            player.sendMessage(Message.HOLOGRAM_DELETE.toString()
+            player.sendMessage(Message.HOLOGRAM_DELETE
                     .replace("<type>", leaderboard.getDisplayName()));
         });
     }

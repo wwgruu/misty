@@ -44,7 +44,7 @@ public class BlockRushScenario extends Scenario {
             minedBlocks.add(xMaterial);
 
             UHCUtils.dropItem(block.getLocation(), XMaterial.GOLD_INGOT.parseItem());
-            player.sendMessage(Message.BLOCK_RUSH_FIRST.toString()
+            player.sendMessage(Message.BLOCK_RUSH_FIRST
                     .replace("<block>", block.getType().toString()));
         }
     }

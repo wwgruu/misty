@@ -25,7 +25,7 @@ public class AnnounceTask extends AbstractScheduleTask {
                 setSeconds(interval);
 
                 int required = Config.getMainConfig().getAutoStart().getMinPlayers() - gameManager.getRegistry().getPlayers().size();
-                Utilities.broadcast(Message.AUTOSTART_ANNOUNCE_MESSAGE.toString()
+                Utilities.broadcast(Message.AUTOSTART_ANNOUNCE_MESSAGE
                         .replace("<required>", String.valueOf(required)));
             }
 

@@ -42,11 +42,11 @@ public class WhitelistCommand extends AbstractCommand {
     public void onAdd(BukkitCommandContext context, @Arg("target") String target) {
         List<String> whitelistPlayers = gameManager.getRegistry().getWhitelistPlayers();
         if (whitelistPlayers.contains(target)) {
-            context.sendMessage(MessageType.INFO, Message.WHITELIST_PLAYER_ALREADY_WHITELISTED.toString()
+            context.sendMessage(MessageType.INFO, Message.WHITELIST_PLAYER_ALREADY_WHITELISTED
                     .replace("<player>", target));
         } else {
             whitelistPlayers.add(target);
-            context.sendMessage(MessageType.INFO, Message.WHITELIST_ADD.toString()
+            context.sendMessage(MessageType.INFO, Message.WHITELIST_ADD
                     .replace("<player>", target));
         }
     }
@@ -55,10 +55,10 @@ public class WhitelistCommand extends AbstractCommand {
     public void onRemove(BukkitCommandContext context, @Arg("target") String target) {
         List<String> whitelistPlayers = gameManager.getRegistry().getWhitelistPlayers();
         if (whitelistPlayers.remove(target)) {
-            context.sendMessage(MessageType.INFO, Message.WHITELIST_REMOVE.toString()
+            context.sendMessage(MessageType.INFO, Message.WHITELIST_REMOVE
                     .replace("<player>", target));
         } else {
-            context.sendMessage(MessageType.INFO, Message.WHITELIST_PLAYER_NOT_WHITELISTED.toString()
+            context.sendMessage(MessageType.INFO, Message.WHITELIST_PLAYER_NOT_WHITELISTED
                     .replace("<player>", target));
         }
     }
@@ -73,7 +73,7 @@ public class WhitelistCommand extends AbstractCommand {
     public void onList(BukkitCommandContext context) {
         List<String> whitelistPlayers = gameManager.getRegistry().getWhitelistPlayers();
         if (whitelistPlayers.isEmpty()) {
-            context.sendMessage(MessageType.INFO, Message.WHITELIST_EMPTY.toString());
+            context.sendMessage(MessageType.INFO, Message.WHITELIST_EMPTY);
         } else {
             StringBuilder message = new StringBuilder();
             message.append(" \n");

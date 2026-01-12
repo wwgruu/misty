@@ -80,7 +80,7 @@ public class TeamManagerImpl implements TeamManager {
         Profile profile = storageRegistry.getProfile(player.getUniqueId());
         Team team = new TeamImpl(id, profile);
         UHCUtils.setTeam(player, team);
-        player.sendMessage(Message.TEAM_CREATE.toString());
+        player.sendMessage(Message.TEAM_CREATE);
         return team;
     }
 }

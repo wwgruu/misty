@@ -47,15 +47,15 @@ public class LoveAtFirstSightScenario extends Scenario {
                 return;
 
             if (targetTeam.getMembers(false).size() == 2) {
-                player.sendMessage(Message.LOVE_AT_FIRST_SIGHT_ALREADY_HAVE_TEAM.toString());
+                player.sendMessage(Message.LOVE_AT_FIRST_SIGHT_ALREADY_HAVE_TEAM);
                 return;
             }
 
             teamManager.getTeams().remove(targetTeam.getId());
             playerTeam.addMember(target);
-            player.sendMessage(Message.LOVE_AT_FIRST_SIGHT_TEAM_WITH.toString()
+            player.sendMessage(Message.LOVE_AT_FIRST_SIGHT_TEAM_WITH
                     .replace("<player>", target.getName()));
-            target.sendMessage(Message.LOVE_AT_FIRST_SIGHT_TEAM_WITH.toString()
+            target.sendMessage(Message.LOVE_AT_FIRST_SIGHT_TEAM_WITH
                     .replace("<player>", player.getName()));
         }
     }

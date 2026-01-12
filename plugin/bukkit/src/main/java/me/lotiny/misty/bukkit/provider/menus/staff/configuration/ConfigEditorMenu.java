@@ -94,7 +94,7 @@ public class ConfigEditorMenu extends MistyMenu {
         config.save();
 
         PlayerUtils.playSound(player, XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
-        player.sendMessage(Message.CONFIG_EDIT_NAME.toString()
+        player.sendMessage(Message.CONFIG_EDIT_NAME
                 .replace("<name>", name));
     }
 

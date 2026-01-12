@@ -132,7 +132,7 @@ public class Coffin {
 
             hologram.remove();
             PlayerUtils.playSound(chest.getLocation(), XSound.ENTITY_GENERIC_EXPLODE);
-            Utilities.broadcast(Message.TIMEBOMB_EXPLODE.toString()
+            Utilities.broadcast(Message.TIMEBOMB_EXPLODE
                     .replace("<player>", s));
         });
     }

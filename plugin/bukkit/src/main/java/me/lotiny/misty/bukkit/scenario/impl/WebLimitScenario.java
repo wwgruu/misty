@@ -79,7 +79,7 @@ public class WebLimitScenario extends Scenario {
                 }
             }
 
-            player.sendMessage(Message.WEB_LIMIT_REACHED.toString());
+            player.sendMessage(Message.WEB_LIMIT_REACHED);
         }
     }
 

@@ -75,7 +75,7 @@ public class UHCCommand extends AbstractCommand {
             MainConfig config = Config.getMainConfig();
             config.setLobbyLocation(BukkitPos.toBukkitLocation(position));
             config.save();
-            player.sendMessage(Message.SET_SPAWN.toString());
+            player.sendMessage(Message.SET_SPAWN);
         });
     }
 
@@ -90,7 +90,7 @@ public class UHCCommand extends AbstractCommand {
                 }
             }
 
-            player.sendMessage(Message.CLEAR_LAG.toString()
+            player.sendMessage(Message.CLEAR_LAG
                     .replace("<world>", world.getName()));
         });
     }
@@ -99,13 +99,13 @@ public class UHCCommand extends AbstractCommand {
     public void onCheckBp(BukkitCommandContext context, @Arg("target") Player target) {
         mustBePlayer(context, player -> {
             if (gameManager.getGame().getSetting().getTeamSize() == 1) {
-                player.sendMessage(Message.TEAM_DISABLED.toString());
+                player.sendMessage(Message.TEAM_DISABLED);
                 return;
             }
 
             Team team = UHCUtils.getTeam(target);
             if (team == null) {
-                player.sendMessage(Message.TEAM_NOT_FOUND.toString());
+                player.sendMessage(Message.TEAM_NOT_FOUND);
                 return;
             }
 
@@ -121,15 +121,15 @@ public class UHCCommand extends AbstractCommand {
 
             if (registry.getHost() == null) {
                 registry.setHost(storageRegistry.getProfile(uuid));
-                player.sendMessage(Message.HOST_SET_HOST.toString()
+                player.sendMessage(Message.HOST_SET_HOST
                         .replace("<target>", target.getName()));
             } else {
                 if (registry.getHost().getUniqueId().equals(uuid)) {
                     registry.setHost(null);
-                    player.sendMessage(Message.HOST_REMOVE_HOST.toString()
+                    player.sendMessage(Message.HOST_REMOVE_HOST
                             .replace("<target>", target.getName()));
                 } else {
-                    player.sendMessage(Message.HOST_ALREADY_HAVE_HOST.toString()
+                    player.sendMessage(Message.HOST_ALREADY_HAVE_HOST
                             .replace("<host>", registry.getHost().getName()));
                 }
             }
@@ -140,12 +140,12 @@ public class UHCCommand extends AbstractCommand {
     public void onCustomItem(BukkitCommandContext context, @Arg("item") CustomItem customItem) {
         mustBePlayer(context, player -> {
             if (gameManager.getRegistry().getState() != GameState.INGAME) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 
             if (!scenarioManager.isEnabled("Custom Craft")) {
-                player.sendMessage(Message.SCENARIO_NOT_ENABLED.toString()
+                player.sendMessage(Message.SCENARIO_NOT_ENABLED
                         .replace("<scenario>", "Custom Craft"));
                 return;
             }

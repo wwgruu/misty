@@ -105,17 +105,17 @@ public class SettingsMenu extends MistyMenu {
                             .onClose(stateSnapshot -> {
                                 String target = stateSnapshot.getText();
                                 if (!isValidName(target)) {
-                                    clickedPlayer.sendMessage(Message.WHITELIST_NAME_NOT_VALID.toString());
+                                    clickedPlayer.sendMessage(Message.WHITELIST_NAME_NOT_VALID);
                                     return;
                                 }
                                 if (gameManager.getRegistry().getWhitelistPlayers().contains(target)) {
-                                    clickedPlayer.sendMessage(Message.WHITELIST_PLAYER_ALREADY_WHITELISTED.toString()
+                                    clickedPlayer.sendMessage(Message.WHITELIST_PLAYER_ALREADY_WHITELISTED
                                             .replace("<player>", target));
                                     return;
                                 }
                                 gameManager.getRegistry().getWhitelistPlayers().add(target);
                                 PlayerUtils.playSound(clickedPlayer, XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
-                                clickedPlayer.sendMessage(Message.WHITELIST_ADD.toString()
+                                clickedPlayer.sendMessage(Message.WHITELIST_ADD
                                         .replace("<player>", target));
                             })
                             .text("Enter Player Name")

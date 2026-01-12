@@ -25,13 +25,13 @@ public class TeamChatCommand extends AbstractCommand {
     public void onCommand(BukkitCommandContext context) {
         mustBePlayer(context, player -> {
             if (gameManager.getGame().getSetting().getTeamSize() == 1) {
-                player.sendMessage(CC.translate(Message.TEAM_DISABLED.toString()));
+                player.sendMessage(CC.translate(Message.TEAM_DISABLED));
                 return;
             }
 
             Team team = UHCUtils.getTeam(player);
             if (team == null) {
-                player.sendMessage(Message.TEAM_NOT_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_NOT_IN_TEAM);
                 return;
             }
 
@@ -39,9 +39,9 @@ public class TeamChatCommand extends AbstractCommand {
             boolean isTeamChat = meta.getOrDefault(TeamEx.TEAM_CHAT, false);
             meta.put(TeamEx.TEAM_CHAT, !isTeamChat);
             if (isTeamChat) {
-                player.sendMessage(Message.TEAM_TOGGLE_TEAMCHAT_DISABLED.toString());
+                player.sendMessage(Message.TEAM_TOGGLE_TEAMCHAT_DISABLED);
             } else {
-                player.sendMessage(Message.TEAM_TOGGLE_TEAMCHAT_ENABLED.toString());
+                player.sendMessage(Message.TEAM_TOGGLE_TEAMCHAT_ENABLED);
             }
         });
     }

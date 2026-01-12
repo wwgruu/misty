@@ -67,12 +67,12 @@ public class TeamCommand extends AbstractCommand {
             if (isTeamDisabled(player)) return;
 
             if (gameManager.getRegistry().getState() != GameState.LOBBY) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 
             if (UHCUtils.getTeam(player) != null) {
-                player.sendMessage(Message.TEAM_ALREADY_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_ALREADY_IN_TEAM);
                 return;
             }
 
@@ -92,18 +92,18 @@ public class TeamCommand extends AbstractCommand {
 
             Team targetTeam = UHCUtils.getTeam(target);
             if (team.getMembers(false).contains(target.getUniqueId()) || targetTeam != null && targetTeam.getMembers(true).size() > 1) {
-                player.sendMessage(Message.TEAM_INVITE_CANT.toString());
+                player.sendMessage(Message.TEAM_INVITE_CANT);
                 return;
             }
 
             if (team.getMembers(true).size() >= gameManager.getGame().getSetting().getTeamSize()) {
-                player.sendMessage(Message.TEAM_FULL.toString());
+                player.sendMessage(Message.TEAM_FULL);
                 return;
             }
 
             GameRegistry registry = gameManager.getRegistry();
             if (registry.getState() == GameState.INGAME && teamManager.getTeams().size() == 2) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 
@@ -112,7 +112,7 @@ public class TeamCommand extends AbstractCommand {
                 invitations.stream()
                         .filter(invitation -> invitation.getInvited().equals(player) && invitation.getInviter().equals(target))
                         .findFirst()
-                        .ifPresent(teamInvitationImpl -> player.sendMessage(Message.TEAM_INVITE_ALREADY_SEND.toString()));
+                        .ifPresent(teamInvitationImpl -> player.sendMessage(Message.TEAM_INVITE_ALREADY_SEND));
             }
 
             TeamInvitationImpl invitation = new TeamInvitationImpl(player, target, team);
@@ -129,13 +129,13 @@ public class TeamCommand extends AbstractCommand {
 
             Team team = UHCUtils.getTeam(player);
             if (team != null && team.getMembers(true).size() != 1) {
-                player.sendMessage(Message.TEAM_ALREADY_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_ALREADY_IN_TEAM);
                 return;
             }
 
             List<TeamInvitation> invitations = teamManager.getInvitations();
             if (invitations.isEmpty()) {
-                player.sendMessage(Message.TEAM_JOIN_FAILED.toString());
+                player.sendMessage(Message.TEAM_JOIN_FAILED);
                 return;
             }
 
@@ -144,7 +144,7 @@ public class TeamCommand extends AbstractCommand {
                     .findFirst()
                     .orElse(null);
             if (teamInvitation == null) {
-                player.sendMessage(Message.TEAM_JOIN_FAILED.toString());
+                player.sendMessage(Message.TEAM_JOIN_FAILED);
                 return;
             }
 
@@ -159,12 +159,12 @@ public class TeamCommand extends AbstractCommand {
 
             Team team = UHCUtils.getTeam(player);
             if (team == null) {
-                player.sendMessage(Message.TEAM_NOT_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_NOT_IN_TEAM);
                 return;
             }
 
             if (gameManager.getRegistry().getState() != GameState.LOBBY) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 
@@ -180,13 +180,13 @@ public class TeamCommand extends AbstractCommand {
     public void onList(BukkitCommandContext context, @Arg("target") Player target) {
         mustBePlayer(context, player -> {
             if (gameManager.getGame().getSetting().getTeamSize() == 1) {
-                player.sendMessage(Message.TEAM_DISABLED.toString());
+                player.sendMessage(Message.TEAM_DISABLED);
                 return;
             }
 
             Team team = UHCUtils.getTeam(target);
             if (team == null) {
-                player.sendMessage(Message.TEAM_NOT_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_NOT_IN_TEAM);
                 return;
             }
 
@@ -211,18 +211,18 @@ public class TeamCommand extends AbstractCommand {
 
             Team team = UHCUtils.getTeam(player);
             if (team == null) {
-                player.sendMessage(Message.TEAM_NOT_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_NOT_IN_TEAM);
                 return;
             }
 
             if (gameManager.getRegistry().getState() != GameState.LOBBY) {
-                player.sendMessage(Message.WRONG_STATE.toString());
+                player.sendMessage(Message.WRONG_STATE);
                 return;
             }
 
             boolean isFill = team.getStorage().getOrThrow(TeamEx.TEAM_FILL);
             team.getStorage().put(TeamEx.TEAM_FILL, !isFill);
-            player.sendMessage(isFill ? Message.TEAM_RANDOM_DISABLED.toString() : Message.TEAM_RANDOM_ENABLED.toString());
+            player.sendMessage(isFill ? Message.TEAM_RANDOM_DISABLED : Message.TEAM_RANDOM_ENABLED);
         });
     }
 
@@ -233,7 +233,7 @@ public class TeamCommand extends AbstractCommand {
 
             Team team = UHCUtils.getTeam(player);
             if (team.getMembers(true).size() > 1) {
-                player.sendMessage(Message.TEAM_ALREADY_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_ALREADY_IN_TEAM);
                 return;
             }
 
@@ -241,12 +241,12 @@ public class TeamCommand extends AbstractCommand {
             if (team == targetTeam) return;
 
             if (targetTeam == null) {
-                player.sendMessage(Message.TEAM_NOT_IN_TEAM.toString());
+                player.sendMessage(Message.TEAM_NOT_IN_TEAM);
                 return;
             }
 
             if (targetTeam.getMembers(true).size() >= gameManager.getGame().getSetting().getTeamSize()) {
-                player.sendMessage(Message.TEAM_FULL.toString());
+                player.sendMessage(Message.TEAM_FULL);
                 return;
             }
 
@@ -273,7 +273,7 @@ public class TeamCommand extends AbstractCommand {
 
     private boolean isTeamDisabled(Player player) {
         if (gameManager.getGame().getSetting().getTeamSize() == 1 || scenarioManager.isEnabled("Red vs Blue") || scenarioManager.isEnabled("Love At First Sight")) {
-            player.sendMessage(Message.TEAM_DISABLED.toString());
+            player.sendMessage(Message.TEAM_DISABLED);
             return true;
         }
         return false;
