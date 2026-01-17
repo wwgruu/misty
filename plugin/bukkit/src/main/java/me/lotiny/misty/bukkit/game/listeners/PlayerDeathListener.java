@@ -35,7 +35,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
 import java.util.List;
-import java.util.UUID;
 
 public class PlayerDeathListener implements Listener {
 
@@ -95,10 +94,7 @@ public class PlayerDeathListener implements Listener {
     @EventHandler
     public void handlePlayerRespawn(PlayerRespawnEvent event) {
         Player player = event.getPlayer();
-        UUID uuid = player.getUniqueId();
         GameRegistry registry = gameManager.getRegistry();
-
-        if (!UHCUtils.isAlive(uuid)) return;
 
         World uhcWorld = Bukkit.getWorld(registry.getUhcWorld());
         if (uhcWorld != null) {
@@ -108,7 +104,6 @@ public class PlayerDeathListener implements Listener {
 
             Players.clear(player);
             player.setGameMode(GameMode.ADVENTURE);
-            registry.getPlayers().replace(uuid, false);
 
             player.setAllowFlight(true);
             player.setFlying(true);

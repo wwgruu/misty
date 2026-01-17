@@ -47,7 +47,7 @@ public class RespawnCommand extends AbstractCommand {
         UUID targetUuid = target.getUniqueId();
         Profile targetProfile = storageRegistry.getProfile(targetUuid);
         Snapshot snapshot = Metadata.provideForPlayer(targetUuid).getOrNull(KeyEx.SNAPSHOT_KEY);
-        if (snapshot == null || !UHCUtils.isAlive(targetUuid)) {
+        if (snapshot == null || UHCUtils.isAlive(targetUuid)) {
             player.sendMessage(Message.RESPAWN_CANT);
             return;
         }
