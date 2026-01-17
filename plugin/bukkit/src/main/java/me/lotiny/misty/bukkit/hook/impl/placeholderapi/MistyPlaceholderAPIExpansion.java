@@ -81,7 +81,7 @@ public class MistyPlaceholderAPIExpansion extends PlaceholderExpansion {
         // Check for a placeholder that lists enabled scenarios.
         // Example: %misty_scenarios%
         if (params.equalsIgnoreCase("scenarios")) {
-            return (scenarioManager.getEnabledScenarios(gameManager).isEmpty() ? "None" : scenarioManager.getEnabledScenarios(gameManager).toString());
+            return (scenarioManager.getEnabledScenarios().isEmpty() ? "None" : scenarioManager.getEnabledScenarios().toString());
         }
 
         // Check for a placeholder that retrieves the host's name.

@@ -10,7 +10,6 @@ import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.GameState;
 import me.lotiny.misty.api.scenario.Scenario;
 import me.lotiny.misty.api.scenario.ScenarioManager;
-import me.lotiny.misty.api.task.AbstractScheduleTask;
 import me.lotiny.misty.api.team.TeamManager;
 import me.lotiny.misty.bukkit.scenario.annotations.IncompatibleWith;
 import me.lotiny.misty.bukkit.scenario.annotations.Required;
@@ -142,21 +141,11 @@ public class ScenarioManagerImpl implements ScenarioManager {
     }
 
     @Override
-    public List<Scenario> getEnabledScenarios(GameManager gameManager) {
-        AbstractScheduleTask startTask = gameManager.getRegistry().getStartTask();
-        return this.getEnabledScenarios(startTask);
-    }
-
-    @Override
-    public List<Scenario> getEnabledScenarios(AbstractScheduleTask startTask) {
-        if (startTask == null || startTask.getSeconds() > 10) {
-            return scenariosToEnable.stream()
-                    .map(this::getScenario)
-                    .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
-        }
-
-        return this.enabledScenarios;
+    public List<Scenario> getEnabledScenarios() {
+        return scenariosToEnable.stream()
+                .map(this::getScenario)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -233,6 +222,10 @@ public class ScenarioManagerImpl implements ScenarioManager {
             return;
         }
 
+        if (!scenariosToEnable.contains(scenario.getName())) {
+            scenariosToEnable.add(scenario.getName());
+        }
+
         enabledScenarios.add(scenario);
         droppedItems.addAll(scenario.getDroppedItems());
         BukkitPlugin.INSTANCE.getServer().getPluginManager().registerEvents(scenario, BukkitPlugin.INSTANCE);
@@ -242,7 +235,8 @@ public class ScenarioManagerImpl implements ScenarioManager {
 
     @Override
     public void disable(Scenario scenario, GameManager gameManager, CommandSender sender, boolean messageLog) {
-        for (Scenario activeScenario : enabledScenarios) {
+        for (String activeScenarioName : scenariosToEnable) {
+            Scenario activeScenario = getScenario(activeScenarioName);
             if (activeScenario.equals(scenario)) {
                 continue;
             }
@@ -270,6 +264,7 @@ public class ScenarioManagerImpl implements ScenarioManager {
             return;
         }
 
+        scenariosToEnable.remove(scenario.getName());
         enabledScenarios.remove(scenario);
         droppedItems.removeAll(scenario.getDroppedItems());
         HandlerList.unregisterAll(scenario);

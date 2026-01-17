@@ -56,15 +56,15 @@ public class ScoreboardProvider extends PlaceholderProvider implements SidebarPr
                 continue;
 
             if (line.equals("<scenarios>")) {
-                List<Scenario> enabledScenarioImpls = scenarioManager.getEnabledScenarios(gameManager);
-                if (enabledScenarioImpls.isEmpty()) {
+                List<Scenario> enabledScenarios = scenarioManager.getEnabledScenarios();
+                if (enabledScenarios.isEmpty()) {
                     sidebarLines.add(SidebarLine.of(decode(mcPlayer, "<white>- <red>None", resolver)));
                 } else {
                     int maxLines = 2;
-                    int more = Math.max(0, enabledScenarioImpls.size() - maxLines);
+                    int more = Math.max(0, enabledScenarios.size() - maxLines);
 
-                    for (int i = 0; i < Math.min(maxLines, enabledScenarioImpls.size()); i++) {
-                        String scenarioLine = "<white>- <aqua>" + enabledScenarioImpls.get(i).getName();
+                    for (int i = 0; i < Math.min(maxLines, enabledScenarios.size()); i++) {
+                        String scenarioLine = "<white>- <aqua>" + enabledScenarios.get(i).getName();
                         sidebarLines.add(SidebarLine.of(decode(mcPlayer, scenarioLine, resolver)));
                     }
 

@@ -264,7 +264,7 @@ public class PlayerListener {
         MCPlayer mcPlayer = MCPlayer.from(player);
         if (mcPlayer != null) {
             List<String> scenarios = new ArrayList<>();
-            scenarioManager.getEnabledScenarios(gameManager).forEach(scenario -> scenarios.add(scenario.getName()));
+            scenarioManager.getEnabledScenarios().forEach(scenario -> scenarios.add(scenario.getName()));
             TagResolver tagResolver = TagResolver.builder()
                     .resolvers(
                             Placeholder.parsed("player", player.getName()),

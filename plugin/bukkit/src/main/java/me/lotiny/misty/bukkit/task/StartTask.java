@@ -8,6 +8,7 @@ import lombok.Getter;
 import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.GameState;
 import me.lotiny.misty.api.game.registry.GameRegistry;
+import me.lotiny.misty.api.scenario.Scenario;
 import me.lotiny.misty.api.scenario.ScenarioManager;
 import me.lotiny.misty.api.task.AbstractScheduleTask;
 import me.lotiny.misty.api.team.Team;
@@ -114,6 +115,11 @@ public class StartTask extends AbstractScheduleTask {
         if (world == null) return;
 
         worldManager.clearEntities(world);
+
+        scenarioManager.getScenariosToEnable().forEach(name -> {
+            Scenario scenario = scenarioManager.getScenario(name);
+            scenarioManager.enable(scenario, gameManager, Bukkit.getConsoleSender(), false);
+        });
 
         if (!gameManager.getGame().getSetting().isChatBeforePvp()) {
             registry.setChatMuted(true);

@@ -91,7 +91,7 @@ public class SaveConfigsMenu extends MistyPaginatedMenu {
 
     private void createNewConfig(Player player) {
         String formatDateTime = getCurrentFormattedDate();
-        List<String> scenarios = scenarioManager.getEnabledScenarios(gameManager).stream()
+        List<String> scenarios = scenarioManager.getEnabledScenarios().stream()
                 .map(Scenario::getName)
                 .toList();
 

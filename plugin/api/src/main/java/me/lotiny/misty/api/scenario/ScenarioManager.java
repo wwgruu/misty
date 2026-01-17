@@ -1,7 +1,6 @@
 package me.lotiny.misty.api.scenario;
 
 import me.lotiny.misty.api.game.GameManager;
-import me.lotiny.misty.api.task.AbstractScheduleTask;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.inventory.ItemStack;
@@ -16,9 +15,7 @@ public interface ScenarioManager {
 
     List<ItemStack> getDroppedItems();
 
-    List<Scenario> getEnabledScenarios(GameManager gameManager);
-
-    List<Scenario> getEnabledScenarios(AbstractScheduleTask startTask);
+    List<Scenario> getEnabledScenarios();
 
     List<Scenario> getScenarios();
 

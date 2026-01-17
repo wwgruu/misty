@@ -17,7 +17,6 @@ import me.lotiny.misty.api.game.GameState;
 import me.lotiny.misty.api.game.registry.GameRegistry;
 import me.lotiny.misty.api.profile.Profile;
 import me.lotiny.misty.api.profile.stats.StatType;
-import me.lotiny.misty.api.scenario.Scenario;
 import me.lotiny.misty.api.scenario.ScenarioManager;
 import me.lotiny.misty.api.team.Team;
 import me.lotiny.misty.api.team.TeamManager;
@@ -87,11 +86,6 @@ public class GameImpl implements Game {
         pluginHookManager.getChunkLoader().setSize(registry.getNetherWorld(), borderSize / worldManager.getNetherScale());
 
         PlayerUtils.playSound(XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
-
-        scenarioManager.getScenariosToEnable().forEach(name -> {
-            Scenario scenario = scenarioManager.getScenario(name);
-            scenarioManager.enable(scenario, gameManager, Bukkit.getConsoleSender(), false);
-        });
 
         registry.getAlivePlayers().stream()
                 .map(Bukkit::getPlayer)

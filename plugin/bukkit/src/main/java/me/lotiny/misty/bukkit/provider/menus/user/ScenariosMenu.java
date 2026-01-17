@@ -29,7 +29,7 @@ public class ScenariosMenu extends MistyMenu {
 
     @Override
     public int getRows(Player player) {
-        List<Scenario> scenarios = new ArrayList<>(scenarioManager.getEnabledScenarios(gameManager));
+        List<Scenario> scenarios = new ArrayList<>(scenarioManager.getEnabledScenarios());
         return Math.max((int) Math.ceil((double) scenarios.size() / 9), 1);
     }
 
@@ -40,7 +40,7 @@ public class ScenariosMenu extends MistyMenu {
 
     @Override
     public Map<Integer, MenuItem> getButtons(Player player, NormalPane pane, Gui gui) {
-        List<Scenario> scenarios = scenarioManager.getEnabledScenarios(gameManager);
+        List<Scenario> scenarios = scenarioManager.getEnabledScenarios();
 
         if (scenarios.isEmpty()) {
             return Collections.singletonMap(0,

@@ -31,9 +31,9 @@ public final class ScoreboardConfig extends BaseConfig {
                 "<gray><st>------------------",
                 "<white>Players<gray>: <aqua><players>",
                 "<white>Type<gray>: <aqua><game_type>",
-                " ",
                 "<start_timer>",
-                "<aqua>Scenarios:",
+                " ",
+                "<white>Scenarios:",
                 "<scenarios>",
                 "<gray><st>------------------"
         );

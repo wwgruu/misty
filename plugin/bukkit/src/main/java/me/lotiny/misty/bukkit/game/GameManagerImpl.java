@@ -202,7 +202,7 @@ public class GameManagerImpl implements GameManager {
 
         this.game = new GameImpl(loadedSetting);
 
-        scenarioManager.getEnabledScenarios(registry.getStartTask()).forEach(scenario -> scenarioManager.disable(scenario, this, Bukkit.getConsoleSender(), false));
+        scenarioManager.getEnabledScenarios().forEach(scenario -> scenarioManager.disable(scenario, this, Bukkit.getConsoleSender(), false));
 
         loadedSetting.getEnabledScenarios().forEach(s -> {
             Scenario scenario = scenarioManager.getScenario(s);
