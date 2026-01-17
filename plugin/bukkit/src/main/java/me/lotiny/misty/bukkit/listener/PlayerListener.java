@@ -82,7 +82,7 @@ public class PlayerListener {
         );
 
         EventListener<PlayerJoinEvent> playerJoinListener = EventListener.builder(PlayerJoinEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getPlayer();
                     UUID uuid = player.getUniqueId();
@@ -117,7 +117,7 @@ public class PlayerListener {
         eventNode.addListener(playerJoinListener);
 
         EventListener<PlayerQuitEvent> playerQuitEvent = EventListener.builder(PlayerQuitEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getPlayer();
                     UUID uuid = player.getUniqueId();
@@ -137,7 +137,7 @@ public class PlayerListener {
         eventNode.addListener(playerQuitEvent);
 
         EventListener<BlockBreakEvent> blockBreakEvent = EventListener.builder(BlockBreakEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getPlayer();
                     if (player.getGameMode() != GameMode.CREATIVE) {
@@ -149,7 +149,7 @@ public class PlayerListener {
         eventNode.addListener(blockBreakEvent);
 
         EventListener<BlockPlaceEvent> blockPlaceEvent = EventListener.builder(BlockPlaceEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getPlayer();
                     if (player.getGameMode() != GameMode.CREATIVE) {
@@ -161,7 +161,7 @@ public class PlayerListener {
         eventNode.addListener(blockPlaceEvent);
 
         EventListener<PlayerPickupItemEvent> playerPickupItemEvent = EventListener.builder(PlayerPickupItemEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getPlayer();
                     if (player.getGameMode() != GameMode.CREATIVE) {
@@ -173,7 +173,7 @@ public class PlayerListener {
         eventNode.addListener(playerPickupItemEvent);
 
         EventListener<PlayerDropItemEvent> playerDropItemEvent = EventListener.builder(PlayerDropItemEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getPlayer();
                     if (player.getGameMode() != GameMode.CREATIVE) {
@@ -185,7 +185,7 @@ public class PlayerListener {
         eventNode.addListener(playerDropItemEvent);
 
         EventListener<PlayerDamageEvent> playerDamageEvent = EventListener.builder(PlayerDamageEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getPlayer();
                     if (!practiceManager.isInPractice(player)) {
@@ -197,21 +197,21 @@ public class PlayerListener {
         eventNode.addListener(playerDamageEvent);
 
         EventListener<PrepareItemCraftEvent> prepareItemCraftEvent = EventListener.builder(PrepareItemCraftEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> event.getInventory().setResult(XMaterial.AIR.parseItem()))
                 .build();
 
         eventNode.addListener(prepareItemCraftEvent);
 
         EventListener<FoodLevelChangeEvent> foodLevelChangeEvent = EventListener.builder(FoodLevelChangeEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> event.setCancelled(true))
                 .build();
 
         eventNode.addListener(foodLevelChangeEvent);
 
         EventListener<PlayerDeathEvent> playerDeathEvent = EventListener.builder(PlayerDeathEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getEntity();
                     Player killer = player.getKiller();
@@ -236,7 +236,7 @@ public class PlayerListener {
         eventNode.addListener(playerDeathEvent);
 
         EventListener<PlayerRespawnEvent> playerRespawnEvent = EventListener.builder(PlayerRespawnEvent.class)
-                .expireWhen(event -> gameManager.getRegistry().getState() != GameState.LOBBY)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
                 .handler(event -> {
                     Player player = event.getPlayer();
                     if (!practiceManager.isInPractice(player)) {
