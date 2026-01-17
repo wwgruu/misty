@@ -16,9 +16,8 @@ import me.lotiny.misty.bukkit.utils.PlayerUtils;
 import me.lotiny.misty.bukkit.utils.VersionUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockEvent;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.EquipmentSlot;
@@ -29,47 +28,39 @@ import java.util.Collection;
 
 @InjectableComponent
 @RequiredArgsConstructor
-public class ConsumableItemHandler {
+public class ConsumableItemListener {
 
-    private final BukkitEventNode globalNode;
     private final ConfigManager configManager;
+    private final BukkitEventNode globalNode;
 
     private MainConfig.Healing.HealingItem goldenApple;
     private MainConfig.Healing.HealingItem playerHead;
     private MainConfig.Healing.HealingItem goldenHead;
 
-    private EventNode<BlockEvent> blockNode;
-    private EventNode<PlayerEvent> playerNode;
+    private EventNode<Event> eventNode;
 
     @PostInitialize
     public void onPostInit() {
-        if (VersionUtils.isHigher(21, 4)) {
-            this.blockNode = EventNode.type(
-                    "misty-consumable-item-blocks",
-                    BukkitEventFilter.BLOCK
-            );
+        this.eventNode = EventNode.type(
+                "consumable-item-listeners",
+                BukkitEventFilter.ALL
+        );
 
-            blockNode.addListener(BlockPlaceEvent.class, event -> {
+        if (VersionUtils.isHigher(21, 4)) {
+            eventNode.addListener(BlockPlaceEvent.class, event -> {
                 ItemStack item = event.getItemInHand();
 
                 if (GoldenHead.build().isSimilar(item) || XMaterial.PLAYER_HEAD.isSimilar(item)) {
                     event.setCancelled(true);
                 }
             });
-
-            globalNode.addChild(blockNode);
         } else {
-            this.playerNode = EventNode.type(
-                    "misty-consumable-item-players",
-                    BukkitEventFilter.PLAYER
-            );
-
             MainConfig.Healing healing = configManager.get(MainConfig.class).getHealing();
             this.goldenApple = healing.getGoldenApple();
             this.playerHead = healing.getPlayerHead();
             this.goldenHead = healing.getGoldenHead();
 
-            playerNode.addListener(PlayerItemConsumeEvent.class, event -> {
+            eventNode.addListener(PlayerItemConsumeEvent.class, event -> {
                 Player player = event.getPlayer();
                 ItemStack item = event.getItem();
 
@@ -79,7 +70,7 @@ public class ConsumableItemHandler {
                 applyEffects(player, healingItem.getPotionEffects());
             });
 
-            playerNode.addListener(PlayerInteractEvent.class, event -> {
+            eventNode.addListener(PlayerInteractEvent.class, event -> {
                 Player player = event.getPlayer();
                 ItemStack item = event.getItem();
 
@@ -106,20 +97,14 @@ public class ConsumableItemHandler {
                         XSound.ENTITY_GENERIC_EAT
                 );
             });
-
-            globalNode.addChild(playerNode);
         }
+
+        globalNode.addChild(eventNode);
     }
 
     @PreDestroy
     public void onPreDestroy() {
-        if (blockNode != null) {
-            globalNode.removeChild(blockNode);
-        }
-
-        if (playerNode != null) {
-            globalNode.removeChild(playerNode);
-        }
+        globalNode.removeChild(eventNode);
     }
 
     private boolean isInstantConsume(MainConfig.Healing.HealingItem heal) {

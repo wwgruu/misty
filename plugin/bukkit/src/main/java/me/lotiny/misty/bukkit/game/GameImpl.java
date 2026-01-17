@@ -25,7 +25,6 @@ import me.lotiny.misty.bukkit.config.Config;
 import me.lotiny.misty.bukkit.config.impl.MainConfig;
 import me.lotiny.misty.bukkit.game.listeners.*;
 import me.lotiny.misty.bukkit.hook.PluginHookManager;
-import me.lotiny.misty.bukkit.listener.PlayerListener;
 import me.lotiny.misty.bukkit.manager.WorldManager;
 import me.lotiny.misty.bukkit.manager.border.visual.VisualBorderGenerator;
 import me.lotiny.misty.bukkit.storage.StorageRegistry;
@@ -39,7 +38,6 @@ import me.lotiny.misty.bukkit.utils.Utilities;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
 import java.util.List;
@@ -82,7 +80,6 @@ public class GameImpl implements Game {
     @Override
     public void start() {
         registerListeners();
-        HandlerList.unregisterAll(PlayerListener.get());
 
         GameRegistry registry = gameManager.getRegistry();
         int borderSize = gameManager.getGame().getSetting().getBorderSize();

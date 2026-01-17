@@ -2,7 +2,6 @@ package me.lotiny.misty.bukkit.manager;
 
 import com.cryptomorin.xseries.XSound;
 import io.fairyproject.Fairy;
-import io.fairyproject.bootstrap.bukkit.BukkitPlugin;
 import io.fairyproject.container.InjectableComponent;
 import io.fairyproject.container.PostInitialize;
 import io.fairyproject.mc.scheduler.MCSchedulers;
@@ -17,7 +16,6 @@ import me.lotiny.misty.bukkit.config.Config;
 import me.lotiny.misty.bukkit.config.impl.PracticeConfig;
 import me.lotiny.misty.bukkit.kit.Kit;
 import me.lotiny.misty.bukkit.provider.hotbar.HotBar;
-import me.lotiny.misty.bukkit.utils.GoldenHead;
 import me.lotiny.misty.bukkit.utils.LocationEx;
 import me.lotiny.misty.bukkit.utils.Message;
 import me.lotiny.misty.bukkit.utils.Utilities;
@@ -26,11 +24,6 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +33,7 @@ import java.util.UUID;
 @Setter
 @InjectableComponent
 @RequiredArgsConstructor
-public class PracticeManager implements Listener {
+public class PracticeManager {
 
     private final GameManager gameManager;
     private final List<UUID> players = new ArrayList<>();
@@ -127,7 +120,6 @@ public class PracticeManager implements Listener {
 
             this.opened = true;
 
-            Bukkit.getPluginManager().registerEvents(this, BukkitPlugin.INSTANCE);
             Utilities.broadcast(Message.PRACTICE_ENABLED
                     .replace("<player>", sender instanceof Player ? sender.getName() : "Console"));
             return;
@@ -148,7 +140,6 @@ public class PracticeManager implements Listener {
         }
 
         this.players.clear();
-        HandlerList.unregisterAll(this);
         Utilities.broadcast(Message.PRACTICE_DISABLED
                 .replace("<player>", sender instanceof Player ? sender.getName() : "Console"));
     }
@@ -169,40 +160,5 @@ public class PracticeManager implements Listener {
 
     public boolean isInPractice(Player player) {
         return this.players.contains(player.getUniqueId());
-    }
-
-    @SuppressWarnings("deprecation")
-    @EventHandler
-    public void handlePlayerDeathEvent(PlayerDeathEvent event) {
-        Player player = event.getEntity();
-        Player killer = player.getKiller();
-        if (!isInPractice(player)) return;
-
-        event.setDroppedExp(0);
-        event.getDrops().clear();
-
-        broadcast(event.getDeathMessage());
-        if (killer != null) {
-            killer.getInventory().addItem(GoldenHead.build());
-        }
-
-        event.setDeathMessage(null);
-
-        MCSchedulers.getGlobalScheduler().schedule(() -> {
-            player.spigot().respawn();
-        }, 5L);
-    }
-
-    @EventHandler
-    public void handlePlayerRespawn(PlayerRespawnEvent event) {
-        Player player = event.getPlayer();
-        if (!isInPractice(player)) return;
-
-        this.players.remove(player.getUniqueId());
-        event.setRespawnLocation(LocationEx.LOBBY.getLocation());
-
-        MCSchedulers.getGlobalScheduler().schedule(() -> {
-            HotBar.get().apply(player);
-        }, 5L);
     }
 }

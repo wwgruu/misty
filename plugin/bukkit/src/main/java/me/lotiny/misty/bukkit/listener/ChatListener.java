@@ -1,16 +1,18 @@
 package me.lotiny.misty.bukkit.listener;
 
-import io.fairyproject.bukkit.listener.RegisterAsListener;
+import io.fairyproject.bukkit.events.BukkitEventFilter;
+import io.fairyproject.bukkit.events.BukkitEventNode;
 import io.fairyproject.bukkit.metadata.Metadata;
 import io.fairyproject.container.InjectableComponent;
 import io.fairyproject.container.PostInitialize;
+import io.fairyproject.container.PreDestroy;
+import io.fairyproject.event.EventNode;
 import io.fairyproject.metadata.MetadataMap;
 import io.fairyproject.util.CC;
 import lombok.RequiredArgsConstructor;
 import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.game.GameSetting;
 import me.lotiny.misty.api.game.registry.GameRegistry;
-import me.lotiny.misty.api.scenario.ScenarioManager;
 import me.lotiny.misty.api.team.Team;
 import me.lotiny.misty.bukkit.Permission;
 import me.lotiny.misty.bukkit.config.Config;
@@ -24,59 +26,82 @@ import me.lotiny.misty.bukkit.utils.TeamEx;
 import me.lotiny.misty.bukkit.utils.UHCUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 import java.util.UUID;
 
 @InjectableComponent
 @RequiredArgsConstructor
-@RegisterAsListener
-public class ChatListener implements Listener {
+public class ChatListener {
 
     private final GameManager gameManager;
-    private final ScenarioManager scenarioManager;
     private final RankManager rankManager;
     private final PluginHookManager pluginHookManager;
+    private final BukkitEventNode globalNode;
 
     private String teamPrefix;
     private String hostPrefix;
     private String modPrefix;
 
+    private boolean chatFormat;
+
+    private String normalFormat;
+    private String teamFormat;
+    private String spectatorFormat;
+
+    private EventNode<PlayerEvent> eventNode;
+
     @PostInitialize
     public void onPostInit() {
         MainConfig config = Config.getMainConfig();
-        teamPrefix = CC.translate(config.getChatPrefix().getTeamPrefix());
-        hostPrefix = CC.translate(config.getChatPrefix().getHostPrefix());
-        modPrefix = CC.translate(config.getChatPrefix().getModPrefix());
+        this.teamPrefix = CC.translate(config.getChatPrefix().getTeamPrefix());
+        this.hostPrefix = CC.translate(config.getChatPrefix().getHostPrefix());
+        this.modPrefix = CC.translate(config.getChatPrefix().getModPrefix());
+
+        this.chatFormat = config.getChatFormat().isEnabled();
+
+        this.normalFormat = config.getChatFormat().getNormal();
+        this.teamFormat = config.getChatFormat().getTeam();
+        this.spectatorFormat = config.getChatFormat().getSpectator();
+
+        this.eventNode = EventNode.type(
+                "chat-listeners",
+                BukkitEventFilter.PLAYER
+        );
+
+        eventNode.addListener(AsyncPlayerChatEvent.class, event -> {
+            Player player = event.getPlayer();
+            UUID uuid = player.getUniqueId();
+            GameRegistry registry = gameManager.getRegistry();
+            MetadataMap meta = Metadata.provideForPlayer(player);
+
+            if (handleTeamChat(event, meta)) return;
+            if (handleMutedChat(event, player, registry)) return;
+
+            handleGlobalChat(event, player, uuid, registry);
+        });
+
+        globalNode.addChild(eventNode);
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void handleAsyncPlayerChatEvent(AsyncPlayerChatEvent event) {
-        Player player = event.getPlayer();
-        UUID uuid = player.getUniqueId();
-        GameRegistry registry = gameManager.getRegistry();
-        MetadataMap meta = Metadata.provideForPlayer(player);
-
-        if (handleTeamChat(event, meta)) return;
-        if (handleMutedChat(event, player, registry)) return;
-
-        handleGlobalChat(event, player, uuid, registry, meta);
+    @PreDestroy
+    public void onPreDestroy() {
+        globalNode.removeChild(eventNode);
     }
 
     private boolean handleTeamChat(AsyncPlayerChatEvent event, MetadataMap meta) {
         boolean isTeamChat = meta.getOrDefault(TeamEx.TEAM_CHAT, false);
-        if (!isTeamChat) return false;
+        if (!isTeamChat) {
+            return false;
+        }
 
         Team team = meta.getOrNull(KeyEx.TEAM_KEY);
-        if (team != null && (gameManager.getGame().getSetting().getTeamSize() != 1
-                || scenarioManager.isEnabled("Love At First Sight") || scenarioManager.isEnabled("Red vs Blue"))) {
-
-            if (Config.getMainConfig().getChatFormat().isEnabled()) {
-                setChatFormat(event, Config.getMainConfig().getChatFormat().getTeam());
+        if (team != null && gameManager.getGame().getSetting().getTeamSize() != 1) {
+            if (chatFormat) {
+                setChatFormat(event, teamFormat);
             }
 
             event.getRecipients().clear();
@@ -93,21 +118,23 @@ public class ChatListener implements Listener {
     }
 
     private boolean handleMutedChat(AsyncPlayerChatEvent event, Player player, GameRegistry registry) {
-        if (!registry.isChatMuted()) return false;
+        if (!registry.isChatMuted()) {
+            return false;
+        }
 
         if (!player.hasPermission(Permission.HOST_PERMISSION)) {
             event.setCancelled(true);
             player.sendMessage(Message.CHAT_DISABLED);
             return true;
         }
+
         return false;
     }
 
-    private void handleGlobalChat(AsyncPlayerChatEvent event, Player player, UUID uuid, GameRegistry registry, MetadataMap meta) {
+    private void handleGlobalChat(AsyncPlayerChatEvent event, Player player, UUID uuid, GameRegistry registry) {
         boolean isSpectator = !player.hasPermission(Permission.HOST_PERMISSION) && !UHCUtils.isAlive(uuid);
-        MainConfig config = Config.getMainConfig();
-        if (config.getChatFormat().isEnabled()) {
-            setChatFormat(event, isSpectator ? config.getChatFormat().getSpectator() : config.getChatFormat().getNormal());
+        if (chatFormat) {
+            setChatFormat(event, isSpectator ? spectatorFormat : normalFormat);
         }
 
         if (isSpectator) {
@@ -119,9 +146,7 @@ public class ChatListener implements Listener {
         }
     }
 
-    private void setChatFormat(AsyncPlayerChatEvent event, String format) {
-        if (format == null) return;
-
+    private void setChatFormat(AsyncPlayerChatEvent event, @NotNull String format) {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
         IRank rank = rankManager.getRank();
