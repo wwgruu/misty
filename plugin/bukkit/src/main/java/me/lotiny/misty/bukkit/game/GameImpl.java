@@ -83,7 +83,9 @@ public class GameImpl implements Game {
         GameRegistry registry = gameManager.getRegistry();
         int borderSize = gameManager.getGame().getSetting().getBorderSize();
         pluginHookManager.getChunkLoader().setSize(registry.getUhcWorld(), borderSize);
-        pluginHookManager.getChunkLoader().setSize(registry.getNetherWorld(), borderSize / worldManager.getNetherScale());
+        if (gameManager.getGame().getSetting().isNether()) {
+            pluginHookManager.getChunkLoader().setSize(registry.getNetherWorld(), borderSize / worldManager.getNetherScale());
+        }
 
         PlayerUtils.playSound(XSound.ENTITY_EXPERIENCE_ORB_PICKUP);
 
