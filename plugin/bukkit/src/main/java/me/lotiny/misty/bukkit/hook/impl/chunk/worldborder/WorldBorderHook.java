@@ -4,7 +4,7 @@ import com.wimbli.WorldBorder.Events.WorldBorderFillFinishedEvent;
 import com.wimbli.WorldBorder.Events.WorldBorderFillStartEvent;
 import com.wimbli.WorldBorder.WorldFillTask;
 import io.fairyproject.bootstrap.bukkit.BukkitPlugin;
-import io.fairyproject.container.Containers;
+import io.fairyproject.container.Autowired;
 import io.fairyproject.log.Log;
 import io.fairyproject.mc.scheduler.MCSchedulers;
 import io.fairyproject.scheduler.ScheduledTask;
@@ -21,8 +21,10 @@ import org.bukkit.event.Listener;
 
 public class WorldBorderHook implements PluginHook, ChunkLoader, Listener {
 
-    private final GameManager gameManager;
-    private final WorldManager worldManager;
+    @Autowired
+    private static GameManager gameManager;
+    @Autowired
+    private static WorldManager worldManager;
 
     private ScheduledTask<?> task;
 
@@ -31,11 +33,6 @@ public class WorldBorderHook implements PluginHook, ChunkLoader, Listener {
     private float progress;
     private long chunks;
     private boolean completed = true;
-
-    public WorldBorderHook() {
-        this.gameManager = Containers.get(GameManager.class);
-        this.worldManager = Containers.get(WorldManager.class);
-    }
 
     @Override
     public void register() {

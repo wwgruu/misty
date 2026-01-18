@@ -1,6 +1,6 @@
 package me.lotiny.misty.bukkit.hook.impl.chunk.chunky;
 
-import io.fairyproject.container.Containers;
+import io.fairyproject.container.Autowired;
 import io.fairyproject.log.Log;
 import io.fairyproject.mc.scheduler.MCSchedulers;
 import me.lotiny.misty.api.game.GameManager;
@@ -15,8 +15,10 @@ import org.popcraft.chunky.api.ChunkyAPI;
 
 public class ChunkyHook implements PluginHook, ChunkLoader {
 
-    private final GameManager gameManager;
-    private final WorldManager worldManager;
+    @Autowired
+    private static GameManager gameManager;
+    @Autowired
+    private static WorldManager worldManager;
 
     private int size;
     private String world;
@@ -25,11 +27,6 @@ public class ChunkyHook implements PluginHook, ChunkLoader {
     private boolean completed = true;
 
     private ChunkyAPI chunky;
-
-    public ChunkyHook() {
-        this.gameManager = Containers.get(GameManager.class);
-        this.worldManager = Containers.get(WorldManager.class);
-    }
 
     @Override
     public void register() {
