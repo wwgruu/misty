@@ -4,6 +4,8 @@ import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
 import io.fairyproject.bukkit.events.BukkitEventFilter;
 import io.fairyproject.bukkit.events.BukkitEventNode;
+import io.fairyproject.bukkit.events.player.PlayerDamageByEntityEvent;
+import io.fairyproject.bukkit.events.player.PlayerDamageByPlayerEvent;
 import io.fairyproject.bukkit.events.player.PlayerDamageEvent;
 import io.fairyproject.bukkit.util.LegacyAdventureUtil;
 import io.fairyproject.bukkit.util.Players;
@@ -195,6 +197,19 @@ public class PlayerListener {
                 .build();
 
         eventNode.addListener(playerDamageEvent);
+
+        EventListener<PlayerDamageByPlayerEvent> playerDamageByPlayerEvent = EventListener.builder(PlayerDamageByPlayerEvent.class)
+                .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
+                .handler(event -> {
+                    Player player = event.getPlayer();
+                    Player damager = event.getDamager();
+                    if (!practiceManager.isInPractice(player) || !practiceManager.isInPractice(damager)) {
+                        event.setCancelled(true);
+                    }
+                })
+                .build();
+
+        eventNode.addListener(playerDamageByPlayerEvent);
 
         EventListener<PrepareItemCraftEvent> prepareItemCraftEvent = EventListener.builder(PrepareItemCraftEvent.class)
                 .expireWhen(event -> gameManager.getRegistry().getState() == GameState.INGAME)
