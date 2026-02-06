@@ -39,6 +39,7 @@ public class ConsumableItemListener {
 
     private EventNode<Event> eventNode;
 
+    @SuppressWarnings("deprecation")
     @PostInitialize
     public void onPostInit() {
         this.eventNode = EventNode.type(
@@ -50,7 +51,7 @@ public class ConsumableItemListener {
             eventNode.addListener(BlockPlaceEvent.class, event -> {
                 ItemStack item = event.getItemInHand();
 
-                if (GoldenHead.build().isSimilar(item) || XMaterial.PLAYER_HEAD.isSimilar(item)) {
+                if (GoldenHead.getItem().isSimilar(item) || XMaterial.PLAYER_HEAD.isSimilar(item)) {
                     event.setCancelled(true);
                 }
             });
@@ -79,10 +80,8 @@ public class ConsumableItemListener {
 
                 PlayerItemConsumeEvent consumeEvent;
                 if (VersionUtils.isHigher(21, 0)) {
-                    //noinspection UnstableApiUsage
                     consumeEvent = new PlayerItemConsumeEvent(player, item, event.getHand() == null ? EquipmentSlot.HAND : event.getHand());
                 } else {
-                    //noinspection removal,UnstableApiUsage
                     consumeEvent = new PlayerItemConsumeEvent(player, item);
                 }
 
@@ -116,7 +115,7 @@ public class ConsumableItemListener {
             return null;
         }
 
-        if (goldenHead.isEnabled() && GoldenHead.build().isSimilar(item)) {
+        if (goldenHead.isEnabled() && GoldenHead.getItem().isSimilar(item)) {
             return goldenHead;
         }
 

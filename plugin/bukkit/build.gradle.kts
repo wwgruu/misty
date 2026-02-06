@@ -16,6 +16,7 @@ repositories {
 dependencies {
     implementation(project(":plugin:api"))
     implementation(project(":plugin:common"))
+    implementation(project(":plugin:paper"))
     implementation(project(":plugin:nms:v1_8_8"))
     implementation(project(":plugin:nms:v1_12_2"))
     implementation(project(":plugin:nms:v1_16_5"))
@@ -24,7 +25,7 @@ dependencies {
     implementation(project(":plugin:nms:v1_21_11"))
 
     // Spigot dependency
-    compileOnly("io.papermc.paper:paper-api:1.21.11-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.21.11-R0.1-SNAPSHOT")
     // WorldBorder dependency
     compileOnly(files("${rootProject.projectDir}/libs/WorldBorder.jar"))
     // AquaCore dependency

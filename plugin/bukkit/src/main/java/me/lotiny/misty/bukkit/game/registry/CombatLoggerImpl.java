@@ -57,7 +57,6 @@ public class CombatLoggerImpl implements CombatLogger {
         Metadata.provideForEntity(entity).put(COMBAT_LOGGER_KEY, this.playerUniqueId);
         gameManager.getRegistry().getCombatLoggers().put(entity.getUniqueId(), this);
 
-        //noinspection deprecation
         entity.setCustomName(CC.translate(this.nameFormat));
         entity.setCustomNameVisible(true);
         entity.setRemoveWhenFarAway(false);
@@ -81,7 +80,7 @@ public class CombatLoggerImpl implements CombatLogger {
                 spawnedEntity.remove();
 
                 dropInventory();
-                UHCUtils.dropItem(location, GoldenHead.build());
+                UHCUtils.dropItem(location, GoldenHead.getItem());
                 scenarioManager.dropScenarioItems(location);
             });
 

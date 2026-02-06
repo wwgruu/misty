@@ -54,7 +54,6 @@ public class ItemRecipeMenu extends MistyPaginatedMenu {
         return Map.of();
     }
 
-    @SuppressWarnings("deprecation")
     private ItemStack buildIcon(CustomItem customItem, Player player) {
         ItemStack icon = ItemBuilder.of(customItem.getItem())
                 .name("&a" + customItem.getName())

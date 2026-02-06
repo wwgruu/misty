@@ -34,6 +34,7 @@ fairy {
 dependencies {
     implementation(project(":plugin:api"))
     implementation(project(":plugin:bukkit"))
+    implementation(project(":plugin:paper"))
     implementation(project(":plugin:common"))
     implementation(project(":plugin:nms:v1_8_8"))
     implementation(project(":plugin:nms:v1_12_2"))

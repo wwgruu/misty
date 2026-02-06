@@ -73,7 +73,9 @@ public class StorageRegistry {
     @PreDestroy
     public void onPreDestroy() {
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
-        scoreboardManager.getMainScoreboard().getTeams().forEach(Team::unregister);
+        if (scoreboardManager != null) {
+            scoreboardManager.getMainScoreboard().getTeams().forEach(Team::unregister);
+        }
 
         profileStorage.saveAll();
         leaderboardHologramStorage.saveAll();

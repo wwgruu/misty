@@ -8,6 +8,7 @@ import me.lotiny.misty.api.scenario.Scenario;
 import me.lotiny.misty.bukkit.utils.ItemStackUtils;
 import me.lotiny.misty.bukkit.utils.PlayerUtils;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
@@ -56,6 +57,9 @@ public class CreeperPongScenario extends Scenario {
                 if (block == null) return;
 
                 Location location = block.getLocation();
+                World world = location.getWorld();
+                if (world == null) return;
+
                 Creeper creeper = (Creeper) location.getWorld().spawnEntity(location.clone().add(0.0, 1.0, 0.0), EntityType.CREEPER);
                 creeper.setPowered(true);
             }

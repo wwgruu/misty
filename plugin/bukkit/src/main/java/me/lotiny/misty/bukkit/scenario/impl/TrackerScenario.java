@@ -14,6 +14,7 @@ import me.lotiny.misty.bukkit.utils.PlayerUtils;
 import me.lotiny.misty.bukkit.utils.UHCUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -63,6 +64,9 @@ public class TrackerScenario extends Scenario {
                     ItemStack item = PlayerUtils.getItemInHand(player);
                     if (XMaterial.COMPASS.isSimilar(item)) {
                         Location location = player.getLocation();
+                        World world = location.getWorld();
+                        if (world == null) return;
+
                         Entity target = location.getWorld().getNearbyEntities(location, 1000, 100, 1000)
                                 .stream()
                                 .filter(entity -> entity instanceof Player)
@@ -89,10 +93,11 @@ public class TrackerScenario extends Scenario {
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void changeItemName(ItemStack stack, String name) {
         ItemMeta meta = stack.getItemMeta();
-        meta.setDisplayName(CC.translate(name));
-        stack.setItemMeta(meta);
+        if (meta != null) {
+            meta.setDisplayName(CC.translate(name));
+            stack.setItemMeta(meta);
+        }
     }
 }

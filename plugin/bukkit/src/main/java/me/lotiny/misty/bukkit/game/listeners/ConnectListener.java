@@ -45,7 +45,6 @@ public class ConnectListener implements Listener {
         storageRegistry.getProfileStorage().getAsync(uuid.toString())
                 .thenAccept(profile -> profile.setName(player.getName()));
 
-        //noinspection deprecation
         event.setJoinMessage(null);
 
         if (UHCUtils.getTeam(player) == null) {
@@ -104,7 +103,6 @@ public class ConnectListener implements Listener {
         UUID uuid = player.getUniqueId();
         Profile profile = storageRegistry.getProfile(uuid);
 
-        //noinspection deprecation
         event.setQuitMessage(null);
 
         if (UHCUtils.isAlive(uuid)) {

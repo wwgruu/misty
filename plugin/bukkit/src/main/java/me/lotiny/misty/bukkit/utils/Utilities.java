@@ -20,7 +20,6 @@ import java.util.Random;
 @UtilityClass
 public class Utilities {
 
-    @SuppressWarnings("deprecation")
     public void broadcast(String message) {
         Bukkit.broadcastMessage(CC.translate(message));
     }

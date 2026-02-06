@@ -6,6 +6,7 @@ import io.fairyproject.bukkit.util.items.ItemBuilder;
 import io.fairyproject.container.Autowired;
 import me.lotiny.misty.api.game.GameManager;
 import me.lotiny.misty.api.scenario.Scenario;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
@@ -37,7 +38,10 @@ public class BedBombScenario extends Scenario {
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
 
         Block block = event.getClickedBlock();
-        if (!block.getLocation().getWorld().getName().equals(gameManager.getRegistry().getUhcWorld())) return;
+        if (block == null) return;
+
+        World world = block.getWorld();
+        if (!world.getName().equals(gameManager.getRegistry().getUhcWorld())) return;
 
         XMaterial xMaterial = XMaterial.matchXMaterial(block.getType());
         if (XTag.BEDS.isTagged(xMaterial)) {

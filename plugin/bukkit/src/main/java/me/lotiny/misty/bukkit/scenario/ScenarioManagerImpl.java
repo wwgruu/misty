@@ -38,7 +38,6 @@ public class ScenarioManagerImpl implements ScenarioManager {
     private static TeamManager teamManager;
 
     private final List<Scenario> scenarios = new ArrayList<>();
-    private final List<Scenario> enabledScenarios = new ArrayList<>();
     private final List<String> scenariosToEnable = new ArrayList<>();
     @Getter
     private final List<ItemStack> droppedItems = new ArrayList<>();
@@ -226,7 +225,6 @@ public class ScenarioManagerImpl implements ScenarioManager {
             scenariosToEnable.add(scenario.getName());
         }
 
-        enabledScenarios.add(scenario);
         droppedItems.addAll(scenario.getDroppedItems());
         BukkitPlugin.INSTANCE.getServer().getPluginManager().registerEvents(scenario, BukkitPlugin.INSTANCE);
 
@@ -265,7 +263,6 @@ public class ScenarioManagerImpl implements ScenarioManager {
         }
 
         scenariosToEnable.remove(scenario.getName());
-        enabledScenarios.remove(scenario);
         droppedItems.removeAll(scenario.getDroppedItems());
         HandlerList.unregisterAll(scenario);
 

@@ -121,16 +121,16 @@ public class GameManagerImpl implements GameManager {
     }
 
     private void handlePlayerScoreboard(Player player) {
+        if (scenarioManager.isEnabled("Secret Health") || !Config.getMainConfig().isHealthBelowName()) return;
+
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
-        if (scenarioManager.isEnabled("Secret Health") || !Config.getMainConfig().isHealthBelowName())
-            return;
+        if (scoreboardManager != null) {
+            Scoreboard board = getOrCreateScoreboard(player, scoreboardManager);
+            Objective objective = getOrCreateObjective(board);
 
-        Scoreboard board = getOrCreateScoreboard(player, scoreboardManager);
-        Objective objective = getOrCreateObjective(board);
-
-        objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
-        //noinspection deprecation
-        objective.setDisplayName(CC.RED + "❤");
+            objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
+            objective.setDisplayName(CC.RED + "❤");
+        }
     }
 
     private Scoreboard getOrCreateScoreboard(Player player, ScoreboardManager scoreboardManager) {
@@ -263,7 +263,7 @@ public class GameManagerImpl implements GameManager {
                 ReflectionUtils.get().createShapedRecipe(
                         MistyShapedRecipe.builder()
                                 .namespace("golden-head")
-                                .result(GoldenHead.build())
+                                .result(GoldenHead.getItem())
                                 .shape("AAAABAAAA")
                                 .ingredients(Map.of(
                                         'A', XMaterial.GOLD_INGOT,

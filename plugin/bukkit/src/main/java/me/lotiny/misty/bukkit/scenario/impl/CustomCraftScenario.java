@@ -254,7 +254,6 @@ public class CustomCraftScenario extends Scenario {
         }
     }
 
-    @SuppressWarnings("removal")
     @Override
     public void onEnable() {
         if (!isRecipeRegistered) {

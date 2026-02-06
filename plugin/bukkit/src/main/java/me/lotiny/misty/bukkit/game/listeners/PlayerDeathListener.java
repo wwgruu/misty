@@ -3,6 +3,7 @@ package me.lotiny.misty.bukkit.game.listeners;
 import com.cryptomorin.xseries.XMaterial;
 import io.fairyproject.bukkit.metadata.Metadata;
 import io.fairyproject.bukkit.util.Players;
+import io.fairyproject.bukkit.util.SpigotUtil;
 import io.fairyproject.bukkit.util.items.ItemBuilder;
 import io.fairyproject.container.Autowired;
 import io.fairyproject.metadata.MetadataMap;
@@ -21,6 +22,7 @@ import me.lotiny.misty.bukkit.provider.hotbar.HotBar;
 import me.lotiny.misty.bukkit.storage.StorageRegistry;
 import me.lotiny.misty.bukkit.utils.*;
 import me.lotiny.misty.bukkit.utils.elo.EloUtils;
+import me.lotiny.misty.paper.MistyPaper;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -111,7 +113,6 @@ public class PlayerDeathListener implements Listener {
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void handleDeathMessageAndElo(PlayerDeathEvent event, Player player, Profile profile, Player killer, Profile killerProfile) {
         String deathMessage = event.getDeathMessage();
         if (deathMessage == null) {
@@ -186,14 +187,18 @@ public class PlayerDeathListener implements Listener {
     }
 
     private void dropPlayerHead(Player player) {
-        ItemStack skull = ItemBuilder.of(XMaterial.PLAYER_HEAD)
-                .skull(player.getName())
+        ItemStack itemToDrop = ItemBuilder.of(XMaterial.PLAYER_HEAD)
+                .skull(player)
                 .build();
 
-        if (VersionUtils.isHigher(21, 4) && playerHeadEnabled) {
-            skull = FastFoodUtils.of(skull, playerHeadConsumeTime, playerHeadConsumeEffects);
+        if (playerHeadEnabled && VersionUtils.isHigher(21, 4) && SpigotUtil.SPIGOT_TYPE == SpigotUtil.SpigotType.PAPER) {
+            MistyPaper.applyConsumable(
+                    itemToDrop,
+                    playerHeadConsumeTime,
+                    playerHeadConsumeEffects
+            );
         }
 
-        UHCUtils.dropItem(player.getLocation(), skull);
+        UHCUtils.dropItem(player.getLocation(), itemToDrop);
     }
 }

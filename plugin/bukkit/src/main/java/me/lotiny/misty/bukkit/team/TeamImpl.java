@@ -41,7 +41,6 @@ public class TeamImpl implements Team {
         this.storage = MetaStorage.create();
         this.storage.put(TeamEx.TEAM_FILL, true);
         this.storage.put(TeamEx.TEAM_KILLS, 0);
-        //noinspection deprecation
         this.storage.put(TeamEx.TEAM_INVENTORY, Bukkit.createInventory(null, 27, "Team #" + id));
         teamManager.getTeams().put(id, this);
     }

@@ -242,7 +242,6 @@ public class SettingsMenu extends MistyMenu {
         );
     }
 
-    @SuppressWarnings("deprecation")
     private ItemStack buildToggleItem(XMaterial material, String name, boolean enabled) {
         return ItemBuilder.of(material)
                 .name(name)

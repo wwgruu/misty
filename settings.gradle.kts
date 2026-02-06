@@ -10,6 +10,7 @@ rootProject.name = "Misty"
 include(":plugin:api")
 include(":plugin:common")
 include(":plugin:bukkit")
+include(":plugin:paper")
 include(":plugin:nms:v1_8_8")
 include(":plugin:nms:v1_12_2")
 include(":plugin:nms:v1_16_5")

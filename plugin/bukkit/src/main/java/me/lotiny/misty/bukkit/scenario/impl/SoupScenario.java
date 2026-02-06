@@ -27,7 +27,6 @@ public class SoupScenario extends Scenario {
                 .build();
     }
 
-    @SuppressWarnings("deprecation")
     @EventHandler
     public void handlePlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();

@@ -26,6 +26,7 @@ public class CraftCommand extends AbstractCommand {
 
     private final CustomItemRegistry customItemRegistry;
 
+    @SuppressWarnings("UnstableApiUsage")
     @Command("#")
     public void onCommand(BukkitCommandContext context, @Arg("item") CustomItem craft) {
         mustBePlayer(context, player -> {

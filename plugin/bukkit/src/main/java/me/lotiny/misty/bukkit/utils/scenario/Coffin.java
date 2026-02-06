@@ -87,7 +87,7 @@ public class Coffin {
             }
         }
 
-        chestState.getInventory().addItem(GoldenHead.build());
+        chestState.getInventory().addItem(GoldenHead.getItem());
 
         Location hologramLocation = chest.getLocation().clone().add(anotherChest == null ? 0.5 : 1, 1, 0.5);
         hologramLocation.setYaw(-180);

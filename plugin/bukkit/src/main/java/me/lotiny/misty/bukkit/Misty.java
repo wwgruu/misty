@@ -31,12 +31,6 @@ public class Misty extends Plugin {
     @Override
     public void onPluginEnable() {
         SpigotUtil.init();
-
-        SpigotUtil.SpigotType type = SpigotUtil.SPIGOT_TYPE;
-        if (type != SpigotUtil.SpigotType.PAPER && type != SpigotUtil.SpigotType.IMANITY) {
-            Log.warn("Detected unsupported server software (" + type + "). This plugin requires Paper or Imanity to function. Disabling...");
-            Utilities.disable();
-        }
     }
 
     private void loadLibrary(String gradle) {

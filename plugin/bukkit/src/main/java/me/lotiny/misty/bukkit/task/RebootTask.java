@@ -28,7 +28,6 @@ public class RebootTask extends AbstractScheduleTask {
                 sendCountdownMessage();
 
                 if (getSeconds() == 5) {
-                    //noinspection deprecation
                     MCSchedulers.getGlobalScheduler().schedule(() -> Bukkit.getOnlinePlayers().forEach((player) -> player.kickPlayer(CC.RED + "The game has been ended!")));
                 }
             }

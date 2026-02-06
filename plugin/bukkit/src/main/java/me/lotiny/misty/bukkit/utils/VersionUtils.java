@@ -11,12 +11,7 @@ public class VersionUtils {
     private final String PLUGIN_VERSION;
 
     static {
-        if (isHigher(21, 0)) {
-            PLUGIN_VERSION = BukkitPlugin.INSTANCE.getPluginMeta().getVersion();
-        } else {
-            //noinspection deprecation
-            PLUGIN_VERSION = BukkitPlugin.INSTANCE.getDescription().getVersion();
-        }
+        PLUGIN_VERSION = BukkitPlugin.INSTANCE.getDescription().getVersion();
     }
 
     public boolean isLower(int minor, int patch) {

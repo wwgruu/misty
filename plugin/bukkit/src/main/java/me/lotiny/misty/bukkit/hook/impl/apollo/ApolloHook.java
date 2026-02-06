@@ -11,6 +11,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.awt.*;
@@ -42,6 +43,10 @@ public class ApolloHook implements PluginHook {
 
     private TeamMember createTeamMember(Player member) {
         Location location = member.getLocation();
+        World world = location.getWorld();
+        if (world == null) {
+            return TeamMember.builder().build();
+        }
 
         return TeamMember.builder()
                 .playerUuid(member.getUniqueId())
@@ -51,7 +56,7 @@ public class ApolloHook implements PluginHook {
                         .build())
                 .markerColor(Color.GREEN)
                 .location(ApolloLocation.builder()
-                        .world(location.getWorld().getName())
+                        .world(world.getName())
                         .x(location.getX())
                         .y(location.getY())
                         .z(location.getZ())

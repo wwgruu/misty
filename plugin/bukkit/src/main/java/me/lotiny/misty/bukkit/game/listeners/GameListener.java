@@ -15,8 +15,6 @@ import me.lotiny.misty.api.game.registry.GameRegistry;
 import me.lotiny.misty.api.profile.Profile;
 import me.lotiny.misty.api.profile.stats.StatType;
 import me.lotiny.misty.bukkit.Permission;
-import me.lotiny.misty.bukkit.config.Config;
-import me.lotiny.misty.bukkit.config.impl.MainConfig;
 import me.lotiny.misty.bukkit.manager.WorldManager;
 import me.lotiny.misty.bukkit.storage.StorageRegistry;
 import me.lotiny.misty.bukkit.task.GameTask;
@@ -47,17 +45,6 @@ public class GameListener implements Listener {
     private static StorageRegistry storageRegistry;
     @Autowired
     private static WorldManager worldManager;
-
-    private final MainConfig.Healing.HealingItem goldenHead;
-    private final MainConfig.Healing.HealingItem goldenApple;
-    private final MainConfig.Healing.HealingItem playerHead;
-
-    public GameListener() {
-        MainConfig.Healing healing = Config.getMainConfig().getHealing();
-        this.goldenHead = healing.getGoldenHead();
-        this.goldenApple = healing.getGoldenApple();
-        this.playerHead = healing.getPlayerHead();
-    }
 
     @EventHandler
     public void handlePrepareItemCraftEvent(PrepareItemCraftEvent event) {
@@ -305,6 +292,8 @@ public class GameListener implements Listener {
         GameSetting setting = gameManager.getGame().getSetting();
         double border = setting.getBorderSize();
         boolean pearlDamage = setting.isPearlDamage();
+
+        if (to == null) return;
 
         int x = Math.abs(to.getBlockX());
         int z = Math.abs(to.getBlockZ());

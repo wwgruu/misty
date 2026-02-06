@@ -88,7 +88,11 @@ public class UHCUtils {
 
     public void dropItem(Location location, ItemStack item) {
         Location dropLocation = location.add(0.5, 0.5, 0.5);
-        dropLocation.getWorld().dropItem(dropLocation, item);
+        World world = dropLocation.getWorld();
+
+        if (world != null) {
+            world.dropItem(dropLocation, item);
+        }
     }
 
     @SuppressWarnings("DataFlowIssue")

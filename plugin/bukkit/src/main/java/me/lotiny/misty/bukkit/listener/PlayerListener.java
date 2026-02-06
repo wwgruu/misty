@@ -238,7 +238,7 @@ public class PlayerListener {
 
                     practiceManager.broadcast(event.getDeathMessage());
                     if (killer != null) {
-                        killer.getInventory().addItem(GoldenHead.build());
+                        killer.getInventory().addItem(GoldenHead.getItem());
                     }
 
                     event.setDeathMessage(null);
