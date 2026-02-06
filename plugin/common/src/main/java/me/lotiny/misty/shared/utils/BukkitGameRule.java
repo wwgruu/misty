@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 import org.bukkit.World;
 
 @UtilityClass
-public class GameRule {
+public class BukkitGameRule {
 
     @SuppressWarnings("unchecked")
     public void setGameRule(org.bukkit.GameRule<?> gameRule, World world, String rule, Object value) {

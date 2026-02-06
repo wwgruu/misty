@@ -5,7 +5,8 @@ version = rootProperties("version")
 
 dependencies {
     implementation(project(":plugin:common"))
+    implementation(project(":plugin:nms:v1_8_8"))
 
     // Spigot dependency
-    compileOnly("com.destroystokyo.paper:paper-api:1.12.2-R0.1-SNAPSHOT")
+    compileOnly("org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT")
 }

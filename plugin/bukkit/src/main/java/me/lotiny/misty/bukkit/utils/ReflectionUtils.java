@@ -11,8 +11,8 @@ import me.lotiny.misty.nms.v1_21_11.v1_21_11;
 import me.lotiny.misty.nms.v1_21_4.v1_21_4;
 import me.lotiny.misty.nms.v1_8_8.v1_8_8;
 import me.lotiny.misty.shared.ReflectionManager;
-import me.lotiny.misty.shared.listener.LegacyPickupListener;
-import me.lotiny.misty.shared.listener.ModernPickupListener;
+import me.lotiny.misty.shared.listener.LegacyListener;
+import me.lotiny.misty.shared.listener.ModernListener;
 import org.bukkit.Bukkit;
 
 @UtilityClass
@@ -44,9 +44,9 @@ public class ReflectionUtils {
 
     private void registerEvent() {
         if (VersionUtils.isHigher(12, 0)) {
-            Bukkit.getPluginManager().registerEvents(new ModernPickupListener(), BukkitPlugin.INSTANCE);
+            Bukkit.getPluginManager().registerEvents(new ModernListener(), BukkitPlugin.INSTANCE);
         } else {
-            Bukkit.getPluginManager().registerEvents(new LegacyPickupListener(), BukkitPlugin.INSTANCE);
+            Bukkit.getPluginManager().registerEvents(new LegacyListener(), BukkitPlugin.INSTANCE);
         }
     }
 

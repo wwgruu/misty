@@ -69,7 +69,7 @@ public class Message {
     public String TEAM_INVITE_CANT;
     public String TEAM_INVITE_SEND;
     public String TEAM_INVITE_RECEIVED;
-    public static String TEAM_INVITE_ALREADY_SEND;
+    public String TEAM_INVITE_ALREADY_SEND;
     public String TEAM_JOIN_FAILED;
     public String TEAM_DISABLED;
     public String TEAM_FULL;

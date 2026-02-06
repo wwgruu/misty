@@ -4,7 +4,6 @@ import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
 import io.fairyproject.bukkit.events.BukkitEventFilter;
 import io.fairyproject.bukkit.events.BukkitEventNode;
-import io.fairyproject.bukkit.events.player.PlayerDamageByEntityEvent;
 import io.fairyproject.bukkit.events.player.PlayerDamageByPlayerEvent;
 import io.fairyproject.bukkit.events.player.PlayerDamageEvent;
 import io.fairyproject.bukkit.util.LegacyAdventureUtil;

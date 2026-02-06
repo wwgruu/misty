@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class LegacyPickupListener implements Listener {
+public class LegacyListener implements Listener {
 
     @EventHandler
     public void handlePickupItem(@SuppressWarnings("deprecation") org.bukkit.event.player.PlayerPickupItemEvent event) {

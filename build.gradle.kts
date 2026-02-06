@@ -27,6 +27,7 @@ allprojects {
     repositories {
         mavenCentral()
         maven(url = uri("https://oss.sonatype.org/content/repositories/snapshots/"))
+        maven(url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/"))
         maven(url = uri("https://repo.codemc.io/repository/maven-public/"))
         maven(url = uri("https://repo.papermc.io/repository/maven-public/"))
         maven(url = uri("https://repo.imanity.dev/imanity-libraries"))
