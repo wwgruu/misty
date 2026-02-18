@@ -35,6 +35,13 @@ public class TeamChatCommand extends AbstractCommand {
                 return;
             }
 
+            String[] args = context.getArgs();
+            if (args.length > 0) {
+                String message = String.join(" ", args);
+                team.sendMessage(message);
+                return;
+            }
+
             MetadataMap meta = Metadata.provideForPlayer(player);
             boolean isTeamChat = meta.getOrDefault(TeamEx.TEAM_CHAT, false);
             meta.put(TeamEx.TEAM_CHAT, !isTeamChat);
