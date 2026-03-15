@@ -26,6 +26,7 @@ allprojects {
     // Configure repositories
     repositories {
         mavenCentral()
+        maven(url = uri("https://repo.lunarclient.dev"))
         maven(url = uri("https://oss.sonatype.org/content/repositories/snapshots/"))
         maven(url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/"))
         maven(url = uri("https://repo.codemc.io/repository/maven-public/"))
